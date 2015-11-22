@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 16, 2015 9:40:27 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="venus" name="DAO.User" optimistic-lock="version" table="user">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="name" type="string">
+      <column length="45" name="name"/>
+    </property>
+    <property name="surname" type="string">
+      <column length="45" name="surname"/>
+    </property>
+    <property name="role" type="string">
+      <column length="45" name="role"/>
+    </property>
+    <property name="creationDate" type="date">
+      <column length="10" name="creationDate"/>
+    </property>
+    <property name="updateDate" type="date">
+      <column length="10" name="updateDate"/>
+    </property>
+    <property name="status" type="java.lang.Integer">
+      <column name="status"/>
+    </property>
+    <property name="photoPath" type="string">
+      <column name="photoPath"/>
+    </property>
+    <property name="email" type="string">
+      <column length="45" name="email"/>
+    </property>
+    <property name="password" type="string">
+      <column length="50" name="password"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="projectusers" table="projectuser">
+      <key>
+        <column name="user_id" not-null="true"/>
+      </key>
+      <one-to-many class="DAO.Projectuser"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="issuehistories" table="issuehistory">
+      <key>
+        <column name="user_id" not-null="true"/>
+      </key>
+      <one-to-many class="DAO.Issuehistory"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="projects" table="project">
+      <key>
+        <column name="manager" not-null="true"/>
+      </key>
+      <one-to-many class="DAO.Project"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="issuesForAssignee" table="issue">
+      <key>
+        <column name="assignee" not-null="true"/>
+      </key>
+      <one-to-many class="DAO.Issue"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="issuesForCreatoruserId" table="issue">
+      <key>
+        <column name="creatoruserID"/>
+      </key>
+      <one-to-many class="DAO.Issue"/>
+    </set>
+  </class>
+</hibernate-mapping>

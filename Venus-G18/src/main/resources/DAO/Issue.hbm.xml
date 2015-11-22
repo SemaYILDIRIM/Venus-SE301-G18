@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 16, 2015 9:40:27 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="venus" name="DAO.Issue" optimistic-lock="version" table="issue">
+    <composite-id class="DAO.IssueId" name="id">
+      <key-property name="id" type="int">
+        <column name="id"/>
+      </key-property>
+      <key-property name="projectId" type="int">
+        <column name="project_id"/>
+      </key-property>
+      <key-property name="assignee" type="int">
+        <column name="assignee"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="DAO.Project" fetch="select" insert="false" name="project" update="false">
+      <column name="project_id" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="DAO.User" fetch="select" insert="false" name="userByAssignee" update="false">
+      <column name="assignee" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="DAO.User" fetch="select" name="userByCreatoruserId">
+      <column name="creatoruserID"/>
+    </many-to-one>
+    <property name="summary" type="string">
+      <column length="16777215" name="summary"/>
+    </property>
+    <property name="description" type="string">
+      <column length="16777215" name="description"/>
+    </property>
+    <property name="creationDate" type="date">
+      <column length="10" name="creationDate"/>
+    </property>
+    <property name="updateDate" type="date">
+      <column length="10" name="updateDate"/>
+    </property>
+    <property name="type" type="string">
+      <column length="45" name="type"/>
+    </property>
+    <property name="status" type="string">
+      <column length="45" name="status"/>
+    </property>
+    <property name="priority" type="java.lang.Integer">
+      <column name="priority"/>
+    </property>
+    <property name="dueDate" type="date">
+      <column length="10" name="dueDate"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="attachments" table="attachment">
+      <key>
+        <column name="issue_id" not-null="true"/>
+        <column name="issue_project_id" not-null="true"/>
+        <column name="issue_assignee" not-null="true"/>
+      </key>
+      <one-to-many class="DAO.Attachment"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="issuehistories" table="issuehistory">
+      <key>
+        <column name="issue_id" not-null="true"/>
+        <column name="issue_project_id" not-null="true"/>
+        <column name="issue_assignee" not-null="true"/>
+      </key>
+      <one-to-many class="DAO.Issuehistory"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="comments" table="comment">
+      <key>
+        <column name="issue_id" not-null="true"/>
+        <column name="issue_project_id" not-null="true"/>
+        <column name="issue_assignee" not-null="true"/>
+      </key>
+      <one-to-many class="DAO.Comment"/>
+    </set>
+  </class>
+</hibernate-mapping>

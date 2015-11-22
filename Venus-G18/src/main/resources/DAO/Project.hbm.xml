@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 16, 2015 9:40:27 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="venus" name="DAO.Project" optimistic-lock="version" table="project">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="DAO.User" fetch="select" name="user">
+      <column name="manager" not-null="true"/>
+    </many-to-one>
+    <property name="discription" type="string">
+      <column length="16777215" name="discription"/>
+    </property>
+    <property name="name" type="string">
+      <column length="45" name="name"/>
+    </property>
+    <property name="creationDate" type="date">
+      <column length="10" name="creationDate"/>
+    </property>
+    <property name="type" type="string">
+      <column length="45" name="type"/>
+    </property>
+    <property name="priority" type="java.lang.Integer">
+      <column name="priority"/>
+    </property>
+    <property name="dueDate" type="date">
+      <column length="10" name="dueDate"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="issues" table="issue">
+      <key>
+        <column name="project_id" not-null="true"/>
+      </key>
+      <one-to-many class="DAO.Issue"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="projectusers" table="projectuser">
+      <key>
+        <column name="project_id" not-null="true"/>
+      </key>
+      <one-to-many class="DAO.Projectuser"/>
+    </set>
+  </class>
+</hibernate-mapping>
