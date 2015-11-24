@@ -33,7 +33,7 @@
         <script type="text/javascript">
 function validateForm() {
     var x = document.forms["form"]["email"].value;
-    if (x == null || x == "") {
+    if (x === null || x === "") {
         var img = document.createElement("IMG");
 	img.src = "http://www.othona-bradwell.org.uk/assets/icons/field-required.png";
 	$("#ii").empty();
