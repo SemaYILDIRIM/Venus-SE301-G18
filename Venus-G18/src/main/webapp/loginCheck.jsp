@@ -16,6 +16,7 @@
                  user.setSessionl(s);
             %>
              <%@ include file="login.jsp"%>
+            
             <%}%>
             <script type="text/javascript">
 $(document).ready(function(){    
