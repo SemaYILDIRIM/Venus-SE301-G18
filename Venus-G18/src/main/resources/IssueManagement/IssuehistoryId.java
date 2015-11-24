@@ -1,5 +1,5 @@
-package DAO;
-// Generated Nov 22, 2015 7:35:56 PM by Hibernate Tools 4.3.1
+package IssueManagement;
+// Generated Nov 16, 2015 9:40:26 AM by Hibernate Tools 4.3.1
 
 
 

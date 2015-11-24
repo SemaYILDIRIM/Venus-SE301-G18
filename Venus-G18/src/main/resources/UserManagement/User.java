@@ -1,5 +1,5 @@
-package DAO;
-// Generated Nov 22, 2015 7:35:56 PM by Hibernate Tools 4.3.1
+package UserManagement;
+// Generated Nov 16, 2015 9:40:26 AM by Hibernate Tools 4.3.1
 
 
 import HibernateSettings.HibernateUtil;
@@ -37,9 +37,13 @@ public class User  implements java.io.Serializable {
      private List list=new ArrayList();
      private HttpSession sessionl;
     public User() {
+        
+        list.add("Thing1");
+        list.add("Thing2");
+        list.add("Thing3");
     }
 
-    public User(String name, String surname, String role, Date creationDate, Date updateDate, Integer status, String photoPath, String email, String password, Set projectusers, Set issuehistories, Set projects, Set issuesForAssignee, Set issuesForCreatoruserId) {
+    public User(String name, String surname, String role, Date creationDate, Date updateDate, Integer status, String photoPath, String email, Set projectusers, Set issuehistories, Set projects, Set issuesForAssignee, Set issuesForCreatoruserId) {
        this.name = name;
        this.surname = surname;
        this.role = role;
@@ -48,12 +52,14 @@ public class User  implements java.io.Serializable {
        this.status = status;
        this.photoPath = photoPath;
        this.email = email;
-       this.password = password;
        this.projectusers = projectusers;
        this.issuehistories = issuehistories;
        this.projects = projects;
        this.issuesForAssignee = issuesForAssignee;
        this.issuesForCreatoruserId = issuesForCreatoruserId;
+        list.add("Thing4");
+        list.add("Thing5");
+        list.add("Thing6");
     }
    
     public Integer getId() {
@@ -119,13 +125,6 @@ public class User  implements java.io.Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getPassword() {
-        return this.password;
-    }
-    
-    public void setPassword(String password) {
-        this.password = password;
-    }
     public Set getProjectusers() {
         return this.projectusers;
     }
@@ -161,15 +160,14 @@ public class User  implements java.io.Serializable {
     public void setIssuesForCreatoruserId(Set issuesForCreatoruserId) {
         this.issuesForCreatoruserId = issuesForCreatoruserId;
     }
-
-public void login(String name, String password){
+    public void login(String name, String password){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        session.save(this);
+        //session.save(this);
         session.getTransaction().commit();
         Transaction tx;
         tx=session.beginTransaction();
-        Query query = session.createQuery("from DAO.User where email= :namee and password= :pwrd");
+        Query query = session.createQuery("from UserManagement.User where email= :namee and password= :pwrd");
         query.setParameter("namee", name);
         query.setParameter("pwrd", password);
         list=query.list();
@@ -191,12 +189,25 @@ public void login(String name, String password){
         session.getTransaction().commit();
         Transaction tx;
         tx=session.beginTransaction();
-        Query query = session.createQuery("select photoPath from DAO.User where email= :namee");
+        Query query = session.createQuery("select photoPath from UserManagement.User where email= :namee");
         query.setParameter("namee", name);
         List photo=query.list();
         if(!photo.get(0).toString().equals("sema"))
         return photo.get(0).toString();
         else return "https://cdn0.iconfinder.com/data/icons/thin-users-people/57/thin-191_user_profile_avatar-512.png";
+    }
+     public int getId(String name){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+//        session.save(this);
+        session.getTransaction().commit();
+        Transaction tx;
+        tx=session.beginTransaction();
+        Query query = session.createQuery("select id from UserManagement.User where email= :namee");
+        query.setParameter("namee", name);
+        List photo=query.list();
+        
+        return Integer.parseInt(photo.get(0).toString());
     }
 
 public void createUser(String name){
@@ -209,7 +220,7 @@ public void createUser(String name){
         session.getTransaction().commit();
         Transaction tx;
         tx=session.beginTransaction();
-        Query query = session.createQuery("from DAO.User where password='123'");
+        Query query = session.createQuery("from UserManagement.User where password='123'");
 
 list = query.list();
 tx.commit();
@@ -222,11 +233,23 @@ session.close();
     public List getList() {
         return list;
     }
-
+public List<String> getItems() {
+        
+        return list;
+    }
     /**
      * @return the password
      */
-   
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     /**
      * @return the sessionl
@@ -241,7 +264,6 @@ session.close();
     public void setSessionl(HttpSession sessionl) {
         this.sessionl = sessionl;
     }
-
 
 
 }

@@ -2,8 +2,8 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Nov 16, 2015 9:40:27 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="venus" name="DAO.Issuehistory" optimistic-lock="version" table="issuehistory">
-    <composite-id class="DAO.IssuehistoryId" name="id">
+  <class catalog="venus" name="IssueManagement.Issuehistory" optimistic-lock="version" table="issuehistory">
+    <composite-id class="IssueManagement.IssuehistoryId" name="id">
       <key-property name="id" type="int">
         <column name="id"/>
       </key-property>
@@ -11,12 +11,12 @@
         <column name="user_id"/>
       </key-property>
     </composite-id>
-    <many-to-one class="DAO.Issue" fetch="select" name="issue">
+    <many-to-one class="IssueManagement.Issue" fetch="select" name="issue">
       <column name="issue_id" not-null="true"/>
       <column name="issue_project_id" not-null="true"/>
       <column name="issue_assignee" not-null="true"/>
     </many-to-one>
-    <many-to-one class="DAO.User" fetch="select" insert="false" name="user" update="false">
+    <many-to-one class="UserManagement.User" fetch="select" insert="false" name="user" update="false">
       <column name="user_id" not-null="true"/>
     </many-to-one>
     <property name="updateDate" type="date">

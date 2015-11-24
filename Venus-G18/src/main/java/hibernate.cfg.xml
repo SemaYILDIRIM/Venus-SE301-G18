@@ -7,12 +7,12 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/venus?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
-    <mapping resource="DAO/Attachment.hbm.xml"/>
-    <mapping resource="DAO/Issue.hbm.xml"/>
-    <mapping resource="DAO/User.hbm.xml"/>
-    <mapping resource="DAO/Projectuser.hbm.xml"/>
-    <mapping resource="DAO/Project.hbm.xml"/>
-    <mapping resource="DAO/Comment.hbm.xml"/>
-    <mapping resource="DAO/Issuehistory.hbm.xml"/>
+    <mapping class="IssueManagement.Issue" file="" jar="" package="IssueManagement" resource="IssueManagement/Issue.hbm.xml"/>
+    <mapping class="IssueManagement.Attachment" file="" jar="" package="IssueManagement" resource="IssueManagement/Attachment.hbm.xml"/>
+    <mapping class="IssueManagement.Issuehistory" file="" jar="" package="IssueManagement" resource="IssueManagement/Issuehistory.hbm.xml"/>
+    <mapping class="IssueManagement.Comment" file="" jar="" package="IssueManagement" resource="IssueManagement/Comment.hbm.xml"/>
+    <mapping resource="proman/Project.hbm.xml"/>
+    <mapping resource="proman/Projectuser.hbm.xml"/>
+    <mapping class="UserManagement.User" file="" jar="" package="UserManagement" resource="UserManagement/User.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

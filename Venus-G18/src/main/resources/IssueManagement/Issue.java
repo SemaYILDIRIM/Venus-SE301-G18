@@ -1,7 +1,9 @@
-package DAO;
-// Generated Nov 22, 2015 7:35:56 PM by Hibernate Tools 4.3.1
+package IssueManagement;
+// Generated Nov 16, 2015 9:40:26 AM by Hibernate Tools 4.3.1
 
 
+import UserManagement.User;
+import proman.Project;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,12 +34,12 @@ public class Issue  implements java.io.Serializable {
     }
 
 	
-    public Issue(IssueId id, Project project, User userByAssignee) {
+    public Issue(IssueId id, Project project,User userByAssignee) {
         this.id = id;
         this.project = project;
         this.userByAssignee = userByAssignee;
     }
-    public Issue(IssueId id, Project project, User userByAssignee, User userByCreatoruserId, String summary, String description, Date creationDate, Date updateDate, String type, String status, Integer priority, Date dueDate, Set attachments, Set issuehistories, Set comments) {
+    public Issue(IssueId id, Project project,User userByAssignee,User userByCreatoruserId, String summary, String description, Date creationDate, Date updateDate, String type, String status, Integer priority, Date dueDate, Set attachments, Set issuehistories, Set comments) {
        this.id = id;
        this.project = project;
        this.userByAssignee = userByAssignee;
@@ -80,7 +82,7 @@ public class Issue  implements java.io.Serializable {
         return this.userByCreatoruserId;
     }
     
-    public void setUserByCreatoruserId(User userByCreatoruserId) {
+    public void setUserByCreatoruserId (User userByCreatoruserId) {
         this.userByCreatoruserId = userByCreatoruserId;
     }
     public String getSummary() {

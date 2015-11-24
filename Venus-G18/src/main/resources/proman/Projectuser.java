@@ -1,7 +1,8 @@
-package DAO;
-// Generated Nov 22, 2015 7:35:56 PM by Hibernate Tools 4.3.1
+package proman;
+// Generated Nov 16, 2015 9:40:26 AM by Hibernate Tools 4.3.1
 
 
+import UserManagement.User;
 import java.util.Date;
 
 /**
@@ -19,11 +20,11 @@ public class Projectuser  implements java.io.Serializable {
     }
 
 	
-    public Projectuser(Project project, User user) {
+    public Projectuser(Project project,User user) {
         this.project = project;
         this.user = user;
     }
-    public Projectuser(Project project, User user, Date creationDate) {
+    public Projectuser(Project project,User user, Date creationDate) {
        this.project = project;
        this.user = user;
        this.creationDate = creationDate;

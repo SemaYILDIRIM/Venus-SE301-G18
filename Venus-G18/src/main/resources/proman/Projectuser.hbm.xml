@@ -2,15 +2,15 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Nov 16, 2015 9:40:27 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="venus" name="DAO.Projectuser" optimistic-lock="version" table="projectuser">
+  <class catalog="venus" name="proman.Projectuser" optimistic-lock="version" table="projectuser">
     <id name="id" type="java.lang.Integer">
       <column name="id"/>
       <generator class="identity"/>
     </id>
-    <many-to-one class="DAO.Project" fetch="select" name="project">
+    <many-to-one class="proman.Project" fetch="select" name="project">
       <column name="project_id" not-null="true"/>
     </many-to-one>
-    <many-to-one class="DAO.User" fetch="select" name="user">
+    <many-to-one class="UserManagement.User" fetch="select" name="user">
       <column name="user_id" not-null="true"/>
     </many-to-one>
     <property name="creationDate" type="date">

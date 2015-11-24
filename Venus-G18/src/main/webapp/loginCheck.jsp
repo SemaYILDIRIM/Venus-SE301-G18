@@ -1,16 +1,14 @@
 
-        <jsp:useBean id="user"  class="DAO.User"></jsp:useBean>
+        <jsp:useBean id="user"  class="UserManagement.User"></jsp:useBean>
         
 
             <% user.login(request.getParameter("email"),request.getParameter("password"));
             HttpSession s= request.getSession(true);
              if(user.getList().size()>0){
-               
                 s.setAttribute("session", "valid");
                 s.setAttribute("email", request.getParameter("email"));
                 s.setAttribute("password", request.getParameter("password"));
-                user.setSessionl(s);
-                String redirectURL = "/Venus-G18/header.jsp";
+                String redirectURL = "/Venus-G18/Home.jsp";
                 response.sendRedirect(redirectURL);
              }
              else{

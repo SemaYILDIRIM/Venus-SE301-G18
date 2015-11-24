@@ -3,12 +3,12 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Nov 16, 2015 9:40:27 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="DAO.Comment" table="comment" catalog="venus" optimistic-lock="version">
+    <class name="IssueManagement.Comment" table="comment" catalog="venus" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="issue" class="DAO.Issue" fetch="select">
+        <many-to-one name="issue" class="IssueManagement.Issue" fetch="select">
             <column name="issue_id" not-null="true" />
             <column name="issue_project_id" not-null="true" />
             <column name="issue_assignee" not-null="true" />
