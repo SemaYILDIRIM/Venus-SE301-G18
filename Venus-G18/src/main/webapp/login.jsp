@@ -32,15 +32,7 @@
         </div></div>
         <script type="text/javascript">
 function validateForm() {
-    var x = document.forms["form"]["email"].value;
-    if (x == null || x == "") {
-        var img = document.createElement("IMG");
-	img.src = "http://www.othona-bradwell.org.uk/assets/icons/field-required.png";
-	$("#ii").empty();
-	document.getElementById('ii').appendChild(img);
-        return false;
-    }
-   var email = document.forms["form"]["email"].value;
+      var email = document.forms["form"]["email"].value;
    var re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
 if (!re.test(email)&& email!="")
 {

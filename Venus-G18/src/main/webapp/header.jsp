@@ -1,4 +1,3 @@
-
 <%@page import="UserManagement.User"%>
 <%@page contentType="text/html" %>
 <html>
@@ -15,7 +14,7 @@
         <jsp:useBean id="user"  class="UserManagement.User"></jsp:useBean>
         <%@page import="proman.Project"%> 
 <%@page import="java.util.Date"%>
-        <% response.setIntHeader("Refresh", 25);
+        <% //response.setIntHeader("Refresh", 25);
         HttpSession s= request.getSession();
         
             if(s.getAttribute("session")=="valid") {%>
@@ -50,19 +49,14 @@ function hide() {
    document.getElementById("profileoption").style.visibility = "hidden";
 }
 </script>
-        <%@ include file="leftmenu.html"%>
+        
          <%} else{
             String redirectURL = "/Venus-G18/login.jsp";
             response.sendRedirect(redirectURL);
         }
          
          %>
-         
-   <select>
-       <c:forEach var="item" items="${user.items}">
-     <option>${item}</option>
-    </c:forEach>
-</select>
+    
     <% if(request.getParameter("deneme")==null){
                     out.print("-------------------");
                 }

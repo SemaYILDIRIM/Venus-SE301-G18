@@ -102,6 +102,7 @@ form{
 .left{
     height: 95%;
     width: 40px;
+    
     background: #cccccc;
   background-image: -webkit-linear-gradient(bottom, #ffffff, #cccccc);
   background-image: -moz-linear-gradient(bottom, #ffffff, #cccccc);
@@ -109,6 +110,7 @@ form{
   background-image: -o-linear-gradient(bottom, #ffffff, #cccccc);
   background-image: linear-gradient(bottom to, #ffffff, #cccccc);
   text-decoration: none;
+  float: left;
 }
 .left img {
     margin-top: 30px;
@@ -356,5 +358,29 @@ div.project{
 }
 
 
-
-
+table.table {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#000000;
+	border-width: 1px;
+	border-color: #407fbf;
+	border-collapse: collapse;
+}
+table.table th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #407fbf;
+}
+table.table td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #a9c6c9;
+}
+tr:nth-child(odd){
+	background-color:#E3E3E3;
+}
+tr:nth-child(even){
+	background-color:#ffffff;
+}

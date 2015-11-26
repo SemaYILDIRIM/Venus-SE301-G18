@@ -233,10 +233,7 @@ session.close();
     public List getList() {
         return list;
     }
-public List<String> getItems() {
-        
-        return list;
-    }
+
     /**
      * @return the password
      */
