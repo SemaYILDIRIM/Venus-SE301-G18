@@ -2,7 +2,6 @@ package IssueManagement;
 // Generated Nov 16, 2015 9:40:26 AM by Hibernate Tools 4.3.1
 
 
-import IssueManagement.Issue;
 import UserManagement.User;
 import java.util.Date;
 

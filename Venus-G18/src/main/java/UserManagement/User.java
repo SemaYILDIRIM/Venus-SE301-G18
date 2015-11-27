@@ -192,8 +192,9 @@ public class User  implements java.io.Serializable {
         Query query = session.createQuery("select photoPath from UserManagement.User where email= :namee");
         query.setParameter("namee", name);
         List photo=query.list();
-        if(!photo.get(0).toString().equals("sema"))
-        return photo.get(0).toString();
+        
+        if(photo != null && photo.get(0) != null && !photo.get(0).toString().equals("sema"))
+            return photo.get(0).toString();
         else return "https://cdn0.iconfinder.com/data/icons/thin-users-people/57/thin-191_user_profile_avatar-512.png";
     }
      public int getId(String name){
