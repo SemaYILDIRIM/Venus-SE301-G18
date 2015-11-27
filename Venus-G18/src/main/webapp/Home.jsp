@@ -2,6 +2,7 @@
 <%@ include file="header.jsp"%>
 <jsp:useBean id="project"  class="proman.Project"></jsp:useBean>
 <%@ include file="leftmenu.html"%>
+<%@ include file="ProjectMaangement/ProjectOption.jsp"%>
 <table class="table" style="margin-left: 100px; margin-top: 50px;">
     <tr>
     <th  style="background-color: #407fbf; color: white;">Project Discription</th>

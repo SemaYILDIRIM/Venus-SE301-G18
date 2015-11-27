@@ -36,7 +36,7 @@ public class User  implements java.io.Serializable {
      private Set issuesForCreatoruserId = new HashSet(0);
      private List list=new ArrayList();
      private HttpSession sessionl;
-    public User() {
+     public User() {
         
         list.add("Thing1");
         list.add("Thing2");
@@ -61,7 +61,85 @@ public class User  implements java.io.Serializable {
         list.add("Thing5");
         list.add("Thing6");
     }
-   
+   public void login(String name, String password){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        //session.save(this);
+        session.getTransaction().commit();
+        Transaction tx;
+        tx=session.beginTransaction();
+        Query query = session.createQuery("from UserManagement.User where email= :namee and password= :pwrd");
+        query.setParameter("namee", name);
+        query.setParameter("pwrd", password);
+        list=query.list();
+        tx.commit();
+        session.close();
+         
+
+
+    }
+    public boolean checkvalid(String ss){
+        if(ss.equals("Logout")){
+            return true;
+        }return false;
+    }
+    public String getpicture(String name){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+//        session.save(this);
+        session.getTransaction().commit();
+        Transaction tx;
+        tx=session.beginTransaction();
+        Query query = session.createQuery("select photoPath from UserManagement.User where email= :namee");
+        query.setParameter("namee", name);
+        List photo=query.list();
+        if(!photo.get(0).toString().equals("sema"))
+        return photo.get(0).toString();
+        else return "https://cdn0.iconfinder.com/data/icons/thin-users-people/57/thin-191_user_profile_avatar-512.png";
+    }
+     public int getId(String name){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+//        session.save(this);
+        session.getTransaction().commit();
+        Transaction tx;
+        tx=session.beginTransaction();
+        Query query = session.createQuery("select id from UserManagement.User where email= :namee");
+        query.setParameter("namee", name);
+        List photo=query.list();
+        
+        return Integer.parseInt(photo.get(0).toString());
+    }
+     public String getUserRole(String id){
+       Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+//        session.save(this);
+        session.getTransaction().commit();
+        Transaction tx;
+        tx=session.beginTransaction();
+        Query query = session.createQuery("select role from UserManagement.User where id= :idd");
+        query.setParameter("idd", Integer.parseInt(id));
+        List role=query.list();
+        
+        return role.get(0).toString();  
+    
+}
+public void createUser(String name){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction(); 
+//        User u=new User();
+//        this.setName(name);
+//        this.setEmail("s@gmail.com");
+//        session.save(this);
+        session.getTransaction().commit();
+        Transaction tx;
+        tx=session.beginTransaction();
+        Query query = session.createQuery("from UserManagement.User where password='123'");
+
+list = query.list();
+tx.commit();
+session.close();
+}
     public Integer getId() {
         return this.id;
     }
@@ -160,73 +238,7 @@ public class User  implements java.io.Serializable {
     public void setIssuesForCreatoruserId(Set issuesForCreatoruserId) {
         this.issuesForCreatoruserId = issuesForCreatoruserId;
     }
-    public void login(String name, String password){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        //session.save(this);
-        session.getTransaction().commit();
-        Transaction tx;
-        tx=session.beginTransaction();
-        Query query = session.createQuery("from UserManagement.User where email= :namee and password= :pwrd");
-        query.setParameter("namee", name);
-        query.setParameter("pwrd", password);
-        list=query.list();
-        tx.commit();
-        session.close();
-         
-
-
-    }
-    public boolean checkvalid(String ss){
-        if(ss.equals("Logout")){
-            return true;
-        }return false;
-    }
-    public String getpicture(String name){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-//        session.save(this);
-        session.getTransaction().commit();
-        Transaction tx;
-        tx=session.beginTransaction();
-        Query query = session.createQuery("select photoPath from UserManagement.User where email= :namee");
-        query.setParameter("namee", name);
-        List photo=query.list();
-        if(!photo.get(0).toString().equals("sema"))
-        return photo.get(0).toString();
-        else return "https://cdn0.iconfinder.com/data/icons/thin-users-people/57/thin-191_user_profile_avatar-512.png";
-    }
-     public int getId(String name){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-//        session.save(this);
-        session.getTransaction().commit();
-        Transaction tx;
-        tx=session.beginTransaction();
-        Query query = session.createQuery("select id from UserManagement.User where email= :namee");
-        query.setParameter("namee", name);
-        List photo=query.list();
-        
-        return Integer.parseInt(photo.get(0).toString());
-    }
-
-public void createUser(String name){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction(); 
-//        User u=new User();
-//        this.setName(name);
-//        this.setEmail("s@gmail.com");
-//        session.save(this);
-        session.getTransaction().commit();
-        Transaction tx;
-        tx=session.beginTransaction();
-        Query query = session.createQuery("from UserManagement.User where password='123'");
-
-list = query.list();
-tx.commit();
-session.close();
-}
-
+    
     /**
      * @return the list
      */

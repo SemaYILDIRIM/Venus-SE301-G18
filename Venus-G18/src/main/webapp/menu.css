@@ -1,4 +1,4 @@
-.menu li{
+.menu .menuli{
     float: left;
     margin-right: 5px;
   background: #407fbf;
@@ -21,7 +21,7 @@
   padding: 14px 20px 10px 20px;
   text-decoration: none;
 }
-.menu li:hover{
+.menu .menuli:hover{
   background: #4d4fb8;
   background-image: -webkit-linear-gradient(top, #4d4fb8, #407fbf);
   background-image: -moz-linear-gradient(top, #4d4fb8, #407fbf);

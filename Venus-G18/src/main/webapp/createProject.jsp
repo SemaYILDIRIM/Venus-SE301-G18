@@ -1,6 +1,14 @@
 <%@page import="UserManagement.User"%>
 <%@page import="UserManagement.User"%>
 <%@page import="proman.Project"%>
+<jsp:useBean id="projectt"  class="proman.Project" scope="session">
+   <jsp:setProperty name="projectt" property="name"
+                    param="proname" />
+   <jsp:setProperty name="projectt" property="discription" 
+                    param="dsc" />
+   <jsp:setProperty name="projectt" property="type" 
+                    value="dsfgds"  />
+</jsp:useBean>
 <div class="aa">
             <div id="openModal" class="modalbg">
                 <div class="dialog">
@@ -23,8 +31,8 @@
                                                         <br>
                                                         <br>
                                                 <p class="na">Project Type</p>
-                                                    <select>
-                                                        <option value="volvo">Type1</option>
+                                                <select name="projectid">
+                                                        <option value="volvo">Volvo</option>
                                                         <option value="saab">Type2</option>
                                                         <option value="mercedes">Type3</option>
                                                         <option value="audi">Type4</option>
@@ -46,6 +54,7 @@
                 </div>
             </div>
         </div> 
+
 <%  HttpSession ss= request.getSession();
             if(request.getParameter("Submit")==null){}
             else{
