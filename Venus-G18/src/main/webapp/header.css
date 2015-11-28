@@ -37,7 +37,10 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    margin-top: 17px;
+    margin-top: 10px;
+    }
+    #profileoption2{
+            margin-left: -50px;
     }
 .profile img{
   float: right;
@@ -93,7 +96,7 @@ body{
 }
 form{
     margin-left: 70px;
-    width: 200px;
+    width: 500px;
     height: auto;
     margin-bottom: 0px;
 }
