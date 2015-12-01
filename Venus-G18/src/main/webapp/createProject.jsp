@@ -12,7 +12,7 @@
                                 <div class="project">
                                         <form id="" method = "post" action = "Home.jsp" onsubmit="return validateForm()">
                                                 <p class="n"><h3>Create Project</h3></p>
-                                                <p id="Creation fail"></p>
+                                               
                                                 <p class="n">Project Name:</p>
                                                     <input class="imgp" type = "text" name = "proname" placeholder="Project Name" required=""/>
                                                     <img class="imgp" id="img" src="https://dialectline.files.wordpress.com/2013/06/sign-error-icon.png" alt="Mountain View" style="width: 15px; height: 15px; visibility: hidden">

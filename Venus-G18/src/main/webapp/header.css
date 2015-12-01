@@ -204,6 +204,12 @@ input.n{
     width: 150px;
     margin-bottom: 2px;
 }
+#cc{
+    margin-top: 25px;
+    width: 150px;
+    margin-bottom: 2px;
+}
+
 .form12{
     width: 400px;
     height: 530px;
@@ -225,7 +231,9 @@ input.n{
 div.project{
     height: 510px;
 }
-
+div.createIssue{
+    height: 510px;
+}
 .modalbg {
   position: fixed;
   top: 0;

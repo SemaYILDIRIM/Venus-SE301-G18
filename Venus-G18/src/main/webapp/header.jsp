@@ -1,5 +1,6 @@
 
 <%@page import="UserManagement.User"%>
+<%@page import="proman.Project"%> 
 <%@page contentType="text/html" %>
 <html>
     <head>
@@ -11,10 +12,9 @@
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     </head>
     <body>
-        
-        <jsp:useBean id="user"  class="UserManagement.User"></jsp:useBean>
-        <%@page import="proman.Project"%> 
-<%@page import="java.util.Date"%>
+        <%@ include file="createIssue.jsp"%> 
+       <%@page import="proman.Project"%> 
+       <%@page import="java.util.Date"%>
         <% response.setIntHeader("Refresh", 25);
         HttpSession s= request.getSession();
         
@@ -24,7 +24,7 @@
                     <div> <ul class="menu"><li><a href="#">Home</a></li>
                             <li><a href="#openModal">Projects</a></li>
                             <li><a href="#openModal">Issue</a></li>
-                            <li><a href="#openModal">Create Issue</a></li>
+                            <li><a href="#openIssueModal">Create Issue</a></li>
                         </ul></div>
                     <div class="profile" onmouseout="hide()" onmouseover="show()" >
                         <img src="<%=user.getpicture(s.getAttribute("email").toString())%>" alt="">
@@ -40,7 +40,7 @@
                 </div>
                         
  <%@ include file="createProject.jsp"%>
-    
+ 
                 <script>
 function show() {
     document.getElementById("profileoption").style.visibility = "visible";
