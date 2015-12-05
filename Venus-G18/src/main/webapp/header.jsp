@@ -9,13 +9,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="header.css">
         <link rel="stylesheet" href="menu.css">
+            <link rel="stylesheet" href="MyOpenIssue.css">
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     </head>
     <body>
         <%@ include file="createIssue.jsp"%> 
        <%@page import="proman.Project"%> 
        <%@page import="java.util.Date"%>
-        <% response.setIntHeader("Refresh", 25);
+        <% //response.setIntHeader("Refresh", 25);
         HttpSession s= request.getSession();
         
             if(s.getAttribute("session")=="valid") {%>
@@ -57,12 +58,7 @@ function hide() {
         }
          
          %>
-         
-   <select>
-       <c:forEach var="item" items="${user.items}">
-     <option>${item}</option>
-    </c:forEach>
-</select>
+  
     <% if(request.getParameter("deneme")==null){
                     out.print("-------------------");
                 }

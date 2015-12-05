@@ -7,6 +7,7 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/venus?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
+    <!--<property name="hibernate.hbm2ddl.auto">create</property>-->
     <mapping class="IssueManagement.Issue" file="" jar="" package="IssueManagement" resource="IssueManagement/Issue.hbm.xml"/>
     <mapping class="IssueManagement.Attachment" file="" jar="" package="IssueManagement" resource="IssueManagement/Attachment.hbm.xml"/>
     <mapping class="IssueManagement.Issuehistory" file="" jar="" package="IssueManagement" resource="IssueManagement/Issuehistory.hbm.xml"/>

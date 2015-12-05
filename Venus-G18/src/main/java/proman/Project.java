@@ -136,6 +136,26 @@ public class Project  implements java.io.Serializable {
         System.out.println(list);
         return list;
     }
+    
+    public Project findById(int id){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx;
+        tx=session.beginTransaction();
+        Query query = session.createQuery("from proman.Project where id=:id");
+        query.setParameter("id", id);
+        List<Project> list = query.list();
+        tx.commit();
+        session.close();
+        
+        System.out.println(list);
+        return list.get(0);
+    }
+
+    @Override
+    public String toString() {
+        return name; //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }
 
 

@@ -109,6 +109,9 @@ form{
   background-image: -o-linear-gradient(bottom, #ffffff, #cccccc);
   background-image: linear-gradient(bottom to, #ffffff, #cccccc);
   text-decoration: none;
+      position: absolute;
+      float: left;
+
 }
 .left img {
     margin-top: 30px;
@@ -138,8 +141,14 @@ form{
 .form1 p{
     margin-bottom: 5px;
 }
-.form1 .imgp{
+ .imgp{
     float: left;
+     height: 100px;
+}
+
+ .im{
+    float: left;
+   
 }
 p.n{
     width: 100px;

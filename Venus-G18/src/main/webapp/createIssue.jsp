@@ -1,3 +1,6 @@
+<%@page import="common.VenusSession"%>
+<%@page import="IssueManagement.IssueId"%>
+<%@page import="UserManagement.User"%>
 <%@page import="IssueManagement.Issue"%>
 <%@page import="proman.Project"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -16,14 +19,14 @@
                                 <div class="project">
                                         <form  method = "post" action = "Home.jsp" onsubmit="return validateForm()">
                                                 <p class="n"><h3>Create Issue</h3></p>
-                                        <link href="site.css" rel="stylesheet">
+                                       
                                             
                                             <table>
                                                 <tr>
                                                     <td>Project:</td>
-                                                    <td><select id="projectListId">
+                                                    <td><select id="projectListId" name="projectListId">
                                                             <c:forEach var="option" items="${project.allProjects}">
-                                                                <option><c:out value="${option.name}" /></option>
+                                                                <option value="${option.id}"><c:out value="${option.name}" /></option>
                                                             </c:forEach>
                                                         </select>   
                                                     </td>
@@ -40,7 +43,7 @@
                                                 <tr>
                                                     <td>Summary:</td>
                                                     <td>
-                                                        <input class="imgp" type = "text" name = "dsc" placeholder="Summary" required=""/>
+                                                        <input class="im" type = "text" name = "dsc" placeholder="Summary" required=""/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -101,8 +104,16 @@
             else{
                             if(request.getParameter("Submit").equals("Create")){
                                //Date date = new Date();
+                                
+                                String projectId = request.getParameter("projectListId");
+                                 
+                                Project selectedproject = project.findById(Integer.parseInt(projectId));
+                                System.out.println(selectedproject);
                                 Issue p= new Issue();
+
                                 p.setDescription(request.getParameter("dsc"));
+                                p.setProject(selectedproject);
+                                p.setUserByCreatoruserId(VenusSession.getSession().getUser());
                                 p.setSummary(request.getParameter("issueSubject"));                              
                                 p.saveIssue();
     }}

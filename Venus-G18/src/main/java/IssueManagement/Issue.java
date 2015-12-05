@@ -4,6 +4,7 @@ package IssueManagement;
 
 import HibernateSettings.HibernateUtil;
 import UserManagement.User;
+import common.VenusSession;
 import java.util.ArrayList;
 import proman.Project;
 import java.util.Date;
@@ -19,7 +20,7 @@ import org.hibernate.Transaction;
 public class Issue  implements java.io.Serializable {
 
 
-     private IssueId id;
+     private int id;
      private Project project;
      private User userByAssignee;
      private User userByCreatoruserId;
@@ -39,12 +40,12 @@ public class Issue  implements java.io.Serializable {
     }
 
 	
-    public Issue(IssueId id, Project project,User userByAssignee) {
+    public Issue(int id, Project project,User userByAssignee) {
         this.id = id;
         this.project = project;
         this.userByAssignee = userByAssignee;
     }
-    public Issue(IssueId id, Project project,User userByAssignee,User userByCreatoruserId, String summary, String description, Date creationDate, Date updateDate, String type, String status, Integer priority, Date dueDate, Set attachments, Set issuehistories, Set comments) {
+    public Issue(int id, Project project,User userByAssignee,User userByCreatoruserId, String summary, String description, Date creationDate, Date updateDate, String type, String status, Integer priority, Date dueDate, Set attachments, Set issuehistories, Set comments) {
        this.id = id;
        this.project = project;
        this.userByAssignee = userByAssignee;
@@ -62,11 +63,11 @@ public class Issue  implements java.io.Serializable {
        this.comments = comments;
     }
    
-    public IssueId getId() {
+    public int getId() {
         return this.id;
     }
     
-    public void setId(IssueId id) {
+    public void setId(int id) {
         this.id = id;
     }
     public Project getProject() {
@@ -192,6 +193,27 @@ public class Issue  implements java.io.Serializable {
        return list;
    }
   
+    public List getAllIssue(){
+        
+        System.out.print("asdadsadasdsd");
+        
+       Session session = HibernateUtil.getSessionFactory().openSession();
+        
+        User loggedInUser = VenusSession.getSession().getUser();
+        Transaction transaction;
+        transaction=session.beginTransaction();
+        Query query = session.createQuery("from IssueManagement.Issue u where u.userByAssignee.id = :userid");
+        query.setParameter("userid", loggedInUser.getId());
+         
+        List<Issue> listt = query.list();
+        transaction.commit();
+        session.close();
+        
+        System.out.println(listt); 
+    
+    
+        return listt;
+    }
 }
 
 

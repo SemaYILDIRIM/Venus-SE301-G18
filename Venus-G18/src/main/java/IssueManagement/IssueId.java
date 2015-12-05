@@ -11,12 +11,12 @@ public class IssueId  implements java.io.Serializable {
 
      private int id;
      private int projectId;
-     private int assignee;
+     private Integer assignee;
 
     public IssueId() {
     }
 
-    public IssueId(int id, int projectId, int assignee) {
+    public IssueId(int id, int projectId, Integer assignee) {
        this.id = id;
        this.projectId = projectId;
        this.assignee = assignee;
@@ -36,11 +36,11 @@ public class IssueId  implements java.io.Serializable {
     public void setProjectId(int projectId) {
         this.projectId = projectId;
     }
-    public int getAssignee() {
+    public Integer getAssignee() {
         return this.assignee;
     }
     
-    public void setAssignee(int assignee) {
+    public void setAssignee(Integer assignee) {
         this.assignee = assignee;
     }
 
