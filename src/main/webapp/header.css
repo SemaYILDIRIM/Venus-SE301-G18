@@ -400,3 +400,13 @@ tr:nth-child(odd){
 tr:nth-child(even){
 	background-color:#ffffff;
 }
+.home{
+    MARGIN-LEFT: 100px;
+}
+.pro1{
+    width: 500px;
+    height: 100px;
+    border: solid 1px #000000;
+    background-color: #407fbf;
+    margin-bottom: 20px;
+}

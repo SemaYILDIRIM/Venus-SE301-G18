@@ -51,6 +51,14 @@ public class User  implements java.io.Serializable {
        this.issuesForAssignee = issuesForAssignee;
        this.issuesForCreatoruserId = issuesForCreatoruserId;
     }
+    /**
+     * This method check the user from database
+     * context User inv:
+     * @inv self.name=name
+     * @inv self.password=password
+     * @pre session.createQuery()
+     * @return void
+     */
    public void login(String name, String password){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -65,6 +73,12 @@ public class User  implements java.io.Serializable {
         tx.commit();
         session.close();
     }
+   /**
+     * This method saves the user
+     * context User inv:
+     * @pre session.save()
+     * @return void
+     */
    public void save(){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -72,6 +86,12 @@ public class User  implements java.io.Serializable {
         session.getTransaction().commit();
         session.close();
     }
+   /**
+     * This method deletes the user
+     * context User inv:
+     * @pre session.delete()
+     * @return void
+     */
    public void delete(){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -84,6 +104,13 @@ public class User  implements java.io.Serializable {
             return true;
         }return false;
     }
+    /**
+     * @param name the name to set
+     * context User inv:
+     * @inv self.photoPath= getPicture()
+     * @pre session.createQuery()
+     * @return the photopath
+     */
     public String getpicture(String name){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -98,6 +125,14 @@ public class User  implements java.io.Serializable {
         return photo.get(0).toString();
         else return "https://cdn0.iconfinder.com/data/icons/thin-users-people/57/thin-191_user_profile_avatar-512.png";
     }
+    
+    /**
+     * @param name the name to set
+     * context User inv:
+     * @inv self.Userid=id
+     * @pre session.createQuery()
+     * @return the User id
+     */
      public int getId(String name){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -111,6 +146,13 @@ public class User  implements java.io.Serializable {
         
         return Integer.parseInt(photo.get(0).toString());
     }
+     /**
+     * @param id the id to set
+     * context User inv:
+     * @inv self.Userid=id
+     * @pre session.createQuery()
+     * @return the User
+     */
      public User getUser(String id){
        Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -125,143 +167,237 @@ public class User  implements java.io.Serializable {
         return user.get(0);  
     
     }
-public void createUser(String name){
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction(); 
-//        User u=new User();
-//        this.setName(name);
-//        this.setEmail("s@gmail.com");
-//        session.save(this);
-        session.getTransaction().commit();
-        Transaction tx;
-        tx=session.beginTransaction();
-        Query query = session.createQuery("from UserManagement.User where password='123'");
+    public void createUser(String name){
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction(); 
+    //        User u=new User();
+    //        this.setName(name);
+    //        this.setEmail("s@gmail.com");
+    //        session.save(this);
+            session.getTransaction().commit();
+            Transaction tx;
+            tx=session.beginTransaction();
+            Query query = session.createQuery("from UserManagement.User where password='123'");
 
-list = query.list();
-tx.commit();
-session.close();
-}
-public List<User> searchString(String search){
+    list = query.list();
+    tx.commit();
+    session.close();
+    }
+    /**
+     * @param search the search to set
+     * context User inv:
+     * @inv List<User>->size >= 0
+     * @pre session.createQuery()
+     * @return the List<User>
+     */
+    public List<User> searchString(String search){
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.getTransaction().commit();
+            Transaction tx;
+            tx=session.beginTransaction();
+            Query query = session.createQuery("from UserManagement.User where name= :word");
+            query.setParameter("word", search);
+    list = query.list();
+    tx.commit();
+    session.close();
+    return list;
+    }
+    
+    /**
+     * @param pro_id the pro_id to set
+     * context User inv:
+     * @inv List<User>->size >= 0
+     * @pre session.createQuery()
+     * @pre self.id=pro_id
+     * @return the List<User>
+     */
+    public List<User> getProUser(int pro_id){
         Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        session.getTransaction().commit();
-        Transaction tx;
-        tx=session.beginTransaction();
-        Query query = session.createQuery("from UserManagement.User where name= :word");
-        query.setParameter("word", search);
-list = query.list();
-tx.commit();
-session.close();
-return list;
-}
-public List<User> getProUser(int pro_id){
-    Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        session.getTransaction().commit();
-        Transaction tx;
-        tx=session.beginTransaction();
-        Query query = session.createQuery("FROM UserManagement.User u, proman.Projectuser pu  where pu.project_id= :id and u.id= pu.user_id");
-        query.setParameter("id", pro_id);
-list = query.list();
-tx.commit();
-session.close();
-return list;
-}
+            session.beginTransaction();
+            session.getTransaction().commit();
+            Transaction tx;
+            tx=session.beginTransaction();
+            Query query = session.createQuery("FROM UserManagement.User u, proman.Projectuser pu  where pu.project_id= :id and u.id= pu.user_id");
+            query.setParameter("id", pro_id);
+    list = query.list();
+    tx.commit();
+    session.close();
+    return list;
+    }
+    /**
+     * @return the Id
+     */
     public Integer getId() {
         return this.id;
     }
     
+    /**
+     * @param Id the Id to set
+     */
     public void setId(Integer id) {
         this.id = id;
     }
+    /**
+     * @return the Name
+     */
     public String getName() {
         return this.name;
     }
-    
+    /**
+     * @param Name the Name to set
+     */
     public void setName(String name) {
         this.name = name;
     }
+    /**
+     * @return the Surname
+     */
     public String getSurname() {
         return this.surname;
     }
-    
+    /**
+     * @param Surname the Surname to set
+     */
     public void setSurname(String surname) {
         this.surname = surname;
     }
+    /**
+     * @return the Role
+     */
     public String getRole() {
         return this.role;
     }
-    
+    /**
+     * @param Role the Role to set
+     */
     public void setRole(String role) {
         this.role = role;
     }
+    /**
+     * @return the CreationDate
+     */
     public Date getCreationDate() {
         return this.creationDate;
     }
-    
+    /**
+     * @param CreationDate the CreationDate to set
+     */
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
     }
+    /**
+     * @return the UpdateDate
+     */
     public Date getUpdateDate() {
         return this.updateDate;
     }
-    
+    /**
+     * @param UpdateDate the UpdateDate to set
+     */
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
+    /**
+     * @return the Status
+     */
     public Integer getStatus() {
         return this.status;
     }
     
+    /**
+     * @param Status the Status to set
+     */
     public void setStatus(Integer status) {
         this.status = status;
     }
+    /**
+     * @return the PhotoPath
+     */
     public String getPhotoPath() {
         return this.photoPath;
     }
     
+    /**
+     * @param PhotoPath the PhotoPath to set
+     */
     public void setPhotoPath(String photoPath) {
         this.photoPath = photoPath;
     }
+    /**
+     * @return the Email
+     */
     public String getEmail() {
         return this.email;
     }
     
+    /**
+     * @param Email the Email to set
+     */
     public void setEmail(String email) {
         this.email = email;
     }
+    /**
+     * @return the Projectusers
+     */
     public Set getProjectusers() {
         return this.projectusers;
     }
     
+    /**
+     * @param Projectusers the Projectusers to set
+     */
     public void setProjectusers(Set projectusers) {
         this.projectusers = projectusers;
     }
+    /**
+     * @return the Issuehistories
+     */
     public Set getIssuehistories() {
         return this.issuehistories;
     }
     
+    /**
+     * @param Issuehistories the Issuehistories to set
+     */
     public void setIssuehistories(Set issuehistories) {
         this.issuehistories = issuehistories;
     }
+    /**
+     * @return the Projects
+     */
     public Set getProjects() {
         return this.projects;
     }
-    
+    /**
+     * @param Projects the Projects to set
+     */
     public void setProjects(Set projects) {
         this.projects = projects;
     }
+    /**
+     * @return the IssuesForAssignee
+     */
     public Set getIssuesForAssignee() {
         return this.issuesForAssignee;
     }
     
+    /**
+     * @param IssuesForAssignee the IssuesForAssignee to set
+     */
     public void setIssuesForAssignee(Set issuesForAssignee) {
         this.issuesForAssignee = issuesForAssignee;
     }
+    /**
+     * @return the IssuesForCreatoruserId
+     */
     public Set getIssuesForCreatoruserId() {
         return this.issuesForCreatoruserId;
     }
     
+     /**
+     * @param IssuesForCreatoruserId the IssuesForCreatoruserId to set
+     */
     public void setIssuesForCreatoruserId(Set issuesForCreatoruserId) {
         this.issuesForCreatoruserId = issuesForCreatoruserId;
     }

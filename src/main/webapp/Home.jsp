@@ -61,5 +61,18 @@
 
                         <%} }}}%>
 </table>
+<div class="home">
+    <h2>Welcome <%=user.getUser(g).getName()+" "+user.getUser(g).getSurname()%> !</h2>
+    <h2>What you want to do today?</h2>
+    
+        <div class="pro1">
+        <br>
+        <p>YOU CAN CHECK YOUR PROJECTS</p>
+    </div>
+        <div class="pro1">
+        <br>
+        <p>YOU CAN CHECK YOUR ISSUES
+    </div>
+</div>
         
     
