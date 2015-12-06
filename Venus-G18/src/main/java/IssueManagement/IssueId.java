@@ -9,24 +9,24 @@ package IssueManagement;
 public class IssueId  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private int projectId;
      private Integer assignee;
 
     public IssueId() {
     }
 
-    public IssueId(int id, int projectId, Integer assignee) {
+    public IssueId(Integer id, int projectId, Integer assignee) {
        this.id = id;
        this.projectId = projectId;
        this.assignee = assignee;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public int getProjectId() {

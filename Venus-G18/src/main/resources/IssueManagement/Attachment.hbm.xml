@@ -10,6 +10,8 @@
         </id>
         <many-to-one name="issue" class="IssueManagement.Issue" fetch="select">
             <column name="issue_id" not-null="true" />
+            <column name="issue_project_id" not-null="true" />
+            <column name="issue_assignee" not-null="true" />
         </many-to-one>
         <property name="documentpath" type="string">
             <column name="documentpath" length="65535" />

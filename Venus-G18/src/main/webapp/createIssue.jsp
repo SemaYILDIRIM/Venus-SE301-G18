@@ -33,9 +33,9 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Issue Type:</td>
-                                                    <td><select id="issueTypeListId">
+                                                    <td><select id="issueTypeListId" name="issueTypeListId">
                                                             <c:forEach var="option" items="${issue.allIssueTypes}">
-                                                                <option><c:out value="${option}" /></option>
+                                                                <option value="${option}"><c:out value="${option}" /></option>
                                                             </c:forEach>
                                                         </select>   
                                                     </td>
@@ -43,15 +43,15 @@
                                                 <tr>
                                                     <td>Summary:</td>
                                                     <td>
-                                                        <input class="im" type = "text" name = "dsc" placeholder="Summary" required=""/>
+                                                        <input class="im" type = "text" name = "summary" placeholder="Summary" required=""/>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>Priority:</td>
                                                     <td>
-                                                        <select id="AllPriorityTypeListId">
+                                                        <select id="priorityTypeListId" name="priorityTypeListId">
                                                             <c:forEach var="option" items="${issue.allPriorityTypes}">
-                                                                <option><c:out value="${option}" /></option>
+                                                                <option value="${option.key}"><c:out value="${option.value}" /></option>
                                                             </c:forEach>
                                                         </select>
                                                     </td>
@@ -59,9 +59,9 @@
                                                 <tr>
                                                     <td>Assignee:</td>
                                                     <td>
-                                                        <select id="AllUserId">
+                                                        <select id="userListId" name="userListId">
                                                             <c:forEach var="option" items="${user.allUser}">
-                                                                <option><c:out value="${option.name}" /></option>
+                                                                <option value="${option.id}"><c:out value="${option.name}" /></option>
                                                             </c:forEach>
                                                         </select>
                                                     </td>
@@ -102,19 +102,28 @@
 <%  
             if(request.getParameter("Submit")==null){}
             else{
-                            if(request.getParameter("Submit").equals("Create")){
-                               //Date date = new Date();
+                            if(request.getParameter("Submit").equals("Create")){                            
                                 
                                 String projectId = request.getParameter("projectListId");
-                                 
-                                Project selectedproject = project.findById(Integer.parseInt(projectId));
-                                System.out.println(selectedproject);
-                                Issue p= new Issue();
+                                String issueType = request.getParameter("issueTypeListId");
+                                String priority = request.getParameter("priorityTypeListId");
+                                String selectedUserId = request.getParameter("userListId");
 
+                                
+                                Issue p= new Issue();
+                                
+                                IssueId compId = new IssueId();
+//                                compId.setId(1);
+                                compId.setProjectId(Integer.parseInt(projectId));
+                                compId.setAssignee(Integer.parseInt(selectedUserId));
+                                p.setId(compId);
                                 p.setDescription(request.getParameter("dsc"));
-                                p.setProject(selectedproject);
+                                p.setSummary(request.getParameter("dsc"));
                                 p.setUserByCreatoruserId(VenusSession.getSession().getUser());
-                                p.setSummary(request.getParameter("issueSubject"));                              
+                                p.setSummary(request.getParameter("issueSubject"));  
+                                p.setType(issueType);
+                                p.setPriority(Integer.parseInt(priority));
+                                
                                 p.saveIssue();
     }}
             

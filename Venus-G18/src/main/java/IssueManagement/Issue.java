@@ -4,6 +4,7 @@ package IssueManagement;
 
 import HibernateSettings.HibernateUtil;
 import UserManagement.User;
+import common.GenericData;
 import common.VenusSession;
 import java.util.ArrayList;
 import proman.Project;
@@ -20,7 +21,7 @@ import org.hibernate.Transaction;
 public class Issue  implements java.io.Serializable {
 
 
-     private int id;
+     private IssueId id;
      private Project project;
      private User userByAssignee;
      private User userByCreatoruserId;
@@ -40,12 +41,12 @@ public class Issue  implements java.io.Serializable {
     }
 
 	
-    public Issue(int id, Project project,User userByAssignee) {
+    public Issue(IssueId id, Project project,User userByAssignee) {
         this.id = id;
         this.project = project;
         this.userByAssignee = userByAssignee;
     }
-    public Issue(int id, Project project,User userByAssignee,User userByCreatoruserId, String summary, String description, Date creationDate, Date updateDate, String type, String status, Integer priority, Date dueDate, Set attachments, Set issuehistories, Set comments) {
+    public Issue(IssueId id, Project project,User userByAssignee,User userByCreatoruserId, String summary, String description, Date creationDate, Date updateDate, String type, String status, Integer priority, Date dueDate, Set attachments, Set issuehistories, Set comments) {
        this.id = id;
        this.project = project;
        this.userByAssignee = userByAssignee;
@@ -63,11 +64,11 @@ public class Issue  implements java.io.Serializable {
        this.comments = comments;
     }
    
-    public int getId() {
+    public IssueId getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(IssueId id) {
         this.id = id;
     }
     public Project getProject() {
@@ -176,21 +177,23 @@ public class Issue  implements java.io.Serializable {
         session.getTransaction().commit();
    }
 
-   public List getAllIssueTypes(){
-       List l = new ArrayList();
+   public List<String> getAllIssueTypes(){
+       List<String> l = new ArrayList<String>();
        
        l.add("Bug");
        l.add("Task");
+       l.add("Improvement");
        
        return l;
    }
-   public List getAllPriorityTypes(){
-       List list = new ArrayList();
+   public List<GenericData> getAllPriorityTypes(){
+       List<GenericData> l = new ArrayList<GenericData>();
        
-       list.add("Major");
-       list.add("Minor");
+       l.add(new GenericData(1, "Major"));
+       l.add(new GenericData(2, "Minor"));
+       l.add(new GenericData(3, "Critical"));
        
-       return list;
+       return l;
    }
   
     public List getAllIssue(){

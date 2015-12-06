@@ -13,6 +13,8 @@
     </composite-id>
     <many-to-one class="IssueManagement.Issue" fetch="select" name="issue">
       <column name="issue_id" not-null="true"/>
+      <column name="issue_project_id" not-null="true"/>
+      <column name="issue_assignee" not-null="true"/>
     </many-to-one>
     <many-to-one class="UserManagement.User" fetch="select" insert="false" name="user" update="false">
       <column name="user_id" not-null="true"/>

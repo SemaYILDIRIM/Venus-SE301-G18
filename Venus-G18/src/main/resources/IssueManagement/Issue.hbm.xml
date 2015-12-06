@@ -3,10 +3,17 @@
 <!-- Generated Nov 16, 2015 9:40:27 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
   <class catalog="venus" name="IssueManagement.Issue" optimistic-lock="version" table="issue">
-    <id name="id" type="java.lang.Integer">
-            <column name="id" />
-            <generator class="identity" />
-        </id>
+    <composite-id class="IssueManagement.IssueId" name="id">
+      <key-property name="id" type="int" >
+        <column name="id"/>
+      </key-property>
+      <key-property name="projectId" type="int">
+        <column name="project_id"/>
+      </key-property>
+      <key-property name="assignee" type="int">
+        <column name="assignee"/>
+      </key-property>
+    </composite-id>
     <many-to-one class="proman.Project" fetch="select" insert="false" name="project" update="false">
       <column name="project_id" not-null="true"/>
     </many-to-one>
@@ -43,18 +50,24 @@
     <set fetch="select" inverse="true" lazy="true" name="attachments" table="attachment">
       <key>
         <column name="issue_id" not-null="true"/>
+        <column name="issue_project_id" not-null="true"/>
+        <column name="issue_assignee" not-null="true"/>
       </key>
       <one-to-many class="IssueManagement.Attachment"/>
     </set>
     <set fetch="select" inverse="true" lazy="true" name="issuehistories" table="issuehistory">
       <key>
         <column name="issue_id" not-null="true"/>
+        <column name="issue_project_id" not-null="true"/>
+        <column name="issue_assignee" not-null="true"/>
       </key>
       <one-to-many class="IssueManagement.Issuehistory"/>
     </set>
     <set fetch="select" inverse="true" lazy="true" name="comments" table="comment">
       <key>
         <column name="issue_id" not-null="true"/>
+        <column name="issue_project_id" not-null="true"/>
+        <column name="issue_assignee" not-null="true"/>
       </key>
       <one-to-many class="IssueManagement.Comment"/>
     </set>
