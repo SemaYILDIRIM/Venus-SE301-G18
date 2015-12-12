@@ -55,7 +55,7 @@ else{
     
 <div class="form1">
         <div class="login">
-            <form method = "post" action = "../changeStatus.jsp?name=<%=request.getParameter("name")%>&issueid=<%=request.getParameter("issueid")%>&userid=<%=request.getParameter("userid")%>" onsubmit="return validateForm()">
+            <form method = "post" action = "changeStatus.jsp?name=<%=request.getParameter("name")%>&issueid=<%=request.getParameter("issueid")%>&userid=<%=request.getParameter("userid")%>" onsubmit="return validateForm()">
                                                 <p class="n"><h3>Select Staff</h3></p>
                                                 <p class="n">Status:</p>
                                                 <input class="imgp" type = "text" name = "istatus" id="istatus" value="<%=status%>" placeholder="Project Name" readonly=""/>
@@ -78,16 +78,10 @@ else{
                                                    <% 
    if(request.getParameter("Submit")==null){}
             else{
-                            if(status.equals("Reopen")){
-                                changestatus.IssueAssigneeStatus(request.getParameter("issueid"), request.getParameter("dev"));
-                                String su="df";
-                                changestatus.changestatus("Reopen", Integer.parseInt(request.getParameter("issueid")));
-                            }
-                            else if(status.equals("Resolved")){
-                                changestatus.IssueAssigneeStatus(request.getParameter("issueid"), request.getParameter("dev"));
-                                String su="df";
-                                changestatus.changestatus("Resolved", Integer.parseInt(request.getParameter("issueid")));
-                            }
+        if(request.getParameter("Submit").equals("Send")){
+            changestatus.changestatus("Open", Integer.parseInt(request.getParameter("issueid")));
+            changestatus.IssueAssigneeStatus(Integer.parseInt(request.getParameter("issueid")),Integer.parseInt(request.getParameter("dev")));             
+        }
                 }
          %>
   

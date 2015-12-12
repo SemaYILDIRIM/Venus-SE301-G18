@@ -59,8 +59,8 @@ public class IssueManagementFacade {
        
         
     }
-    public void IssueAssigneeStatus(String id,String assignee){
-        issue.setIssueAssignee(Integer.parseInt(id),Integer.parseInt(assignee));
+    public void IssueAssigneeStatus(int id,int assignee){
+        issue.setIssueAssignee(id,assignee);
     }
     
     /**

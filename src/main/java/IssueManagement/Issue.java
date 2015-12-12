@@ -120,9 +120,10 @@ public class Issue  implements java.io.Serializable {
         session.getTransaction().commit();
         Transaction tx;
         tx=session.beginTransaction();
-        Query query = session.createQuery("update IssueManagement.Issue set assignee = :assignee1  where id = :id");
+        Query query = session.createQuery("update IssueManagement.Issue set assignee = :assignee  where id = :id");
+        query.setInteger("assignee", assignee);
         query.setInteger("id", id);
-        query.setInteger("assignee1", assignee);
+        
         int result = query.executeUpdate();
         tx.commit();
         session.close();
