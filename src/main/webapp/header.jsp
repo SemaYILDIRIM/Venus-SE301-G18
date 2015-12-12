@@ -88,7 +88,8 @@
                     }
                 </script>
         
-                <%} else{
+                <%}
+           else{
                     String redirectURL = "/A-Venus/login.jsp";
                     response.sendRedirect(redirectURL);
                         }

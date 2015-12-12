@@ -33,8 +33,9 @@
 
                         </tr> <%}%>
                     </table>
-
-                    <% }else{%>
+                    <% }
+                
+                else{%>
                             
                     <table class="table" style="margin-left: 100px; margin-top: 50px;">
                         <tr>

@@ -25,7 +25,13 @@ function hideProjectMenu() {
 }
 </script>
 
-<%}else{%>
+<%}
+    else if(user3.getUser(""+session1.getAttribute("id")).getRole().contains("admin")){
+                    String redirectURL = "/A-Venus/admin.jsp";
+                    response.sendRedirect(redirectURL);
+                    
+                }
+   else{%>
 
 developer
 
