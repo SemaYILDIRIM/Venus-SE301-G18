@@ -37,7 +37,7 @@ if(role.contains("manager")||role.contains("developer")){
        else if(userissue.getUser(g).getRole().contains("tester")){
                 User manager=issueresolve.getProjectDetail(request.getParameter("name")).getUser();
                 issueresolve.getUserlist().add(userissue.getUser(manager.getId()+""));
-                   // issueresolve.getUserlist().add(userissue.getUser(manager.getId()+""));
+                   // /issueresolve.getUserlist().add(userissue.getUser(manager.getId()+""));
           
       
        }}
@@ -82,6 +82,7 @@ else{
             changestatus.changestatus("Open", Integer.parseInt(request.getParameter("issueid")));
             changestatus.IssueAssigneeStatus(Integer.parseInt(request.getParameter("issueid")),Integer.parseInt(request.getParameter("dev")));             
         }
+        
                 }
          %>
   
