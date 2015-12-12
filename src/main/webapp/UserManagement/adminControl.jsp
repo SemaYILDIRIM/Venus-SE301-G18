@@ -16,10 +16,8 @@
               Delete Staff
              </li></a>
              <a  href="#link3">
-                 <br>
-                 <li>
-              Edit Staff
-             </li></a>
+                 
+                 </a>
              
          </ul>
              
@@ -67,13 +65,10 @@
              
              <%
              String searchString = request.getParameter("search");
-             String result="";
              List<UserManagement.User> searchResults=userfacade2.SearchStaff(searchString);
              if (searchString != null) {}
              if (searchResults.isEmpty()) {
-                 result="No Result";
-                 out.print(result);
-                 result="";
+                 out.print("No Result");
              }
              if (!searchResults.isEmpty()) {
                  out.print(searchResults.get(0).getName());
@@ -110,59 +105,20 @@ searchString="";
 </table><%}%>
          
          </div>
-         <div id="link3" class="prodetail2">
          
-             <form action="admin.jsp#link3" method="post">
-                 <input name="Searchs"/>
-             <input type="submit" value="Search" /></form>
-             
-             <%
-             String editUser = request.getParameter("Searchs");
-             String result2="";
-             List<UserManagement.User> searchResults2=userfacade2.SearchStaff(editUser);
-             if (editUser != null) {}
-             if (searchResults2.isEmpty()) {
-                 result2="No Result";
-                 out.print(result2);
-                 result2="";
-             }
-             if (!searchResults2.isEmpty()) {
-                 out.print(searchResults2.get(0).getName());
-                   %>
-     <table class="table" style="margin-left: 100px; margin-top: 50px;">
-    <tr>
-    <th  style="background-color: #407fbf; color: white;">User Name</th>
-    <th style="background-color: #407fbf; color: white;">User Surname</th>
-    <th style="background-color: #407fbf; color: white;">Email</th>
-    <th style="background-color: #407fbf; color: white;">Role</th>
-    <th style="background-color: #407fbf; color: white;">Status</th>
-    <th style="background-color: #407fbf; color: white;">Creation Date</th>
-    
-  </tr>
-    <% 
-for (int i=0; i<searchResults2.size(); i++){%>
-<tr>
-    <td><a href=""><%=searchResults2.get(i).getName()%></a></td>
-    <td><a href=""><%=searchResults2.get(i).getSurname()%></a></td>
-    <td><a href=""><%=searchResults2.get(i).getEmail()%></a></td>
-    <td><a href=""><%=searchResults2.get(i).getRole()%></a></td>
-    <td><a href=""><%=searchResults2.get(i).getStatus()%></a></td>
-    <td><a href=""><%=searchResults2.get(i).getCreationDate()%></a></td>
-</tr>
-        <%}
-editUser="";
-        %>
-    
-</table><%}%>
-          
-         </div>
          
      </div>
 <% 
             if(request.getParameter("Submit")==null){}
             else{
                 if(request.getParameter("Submit").equals("Save")){
-                   userfacade2.SaveUser(request.getParameter("uname"),request.getParameter("usurname"),request.getParameter("uemail"),request.getParameter("upassword"),request.getParameter("urole"));
+                    if(userfacade2.getValidUser(request.getParameter("uemail"))!=null){
+                        out.print("Valid User, Write new Email");
+                    }
+                    else{
+                        userfacade2.SaveUser(request.getParameter("uname"),request.getParameter("usurname"),request.getParameter("uemail"),request.getParameter("upassword"),request.getParameter("urole"));
+                    }
+                   
                 }
                 else if(request.getParameter("Submit").equals("Delete")){
                     userfacade2.deleteUser(request.getParameter("uid"));

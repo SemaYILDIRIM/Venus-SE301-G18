@@ -53,13 +53,7 @@
              
              
          <div id="link2" class="prodetail">
-             <% out.print(request.getParameter("name")+"  --2222--");
-             out.print("size: "+projects.getProjectUser(p.getId()).size());
-             %>
-             
-             
-             
-             <table class="table" style="margin-left: 100px; margin-top: 50px;">
+    <table class="table" style="margin-left: 100px; margin-top: 50px;">
     <tr>
     <th style="background-color: #407fbf; color: white;">User Name</th>
     <th style="background-color: #407fbf; color: white;" >User Surname </th>
@@ -84,20 +78,16 @@ for (int i=0; i<projects.getProjectUser(p.getId()).size(); i++){
          
          </div>
          <div id="link3" class="prodetail">
-             <% out.print(request.getParameter("name")+"  --33--"); %>
              <form action="Projects.jsp?name=<%=request.getParameter("name")%>&uid=0#link3" method="post">
                  <input name="search"/>
              <input type="submit" value="Search" /></form>
              
              <%
              String searchString = request.getParameter("search");
-             String result="";
              List<UserManagement.User> searchResults=userfacade.SearchStaff(searchString);
              if (searchString != null) {}
              if (searchResults.isEmpty()) {
-                 result="No Result";
-                 out.print(result);
-                 result="";
+                 out.print("No Result");
              }
              if (!searchResults.isEmpty()) {
                  out.print(searchResults.get(0).getName());
@@ -126,7 +116,6 @@ searchString="";
 </table><%}%>
          </div>
          <div id="link4" class="prodetail">
-             <% out.print(request.getParameter("name")+"  --44--"); %>
              
              
              <table class="table" style="margin-left: 100px; margin-top: 50px;">
@@ -175,7 +164,7 @@ searchString="";
              <h2 class="proname"><% out.print(p.getName()); %></h2>
              <hr>
              <img src="http://www.hilepack.com/img/User-blue-icon.png" style="width: 30px;height: 30px; margin-right: 10px; margin-left: 10px;"/>
-             Manager: <% out.print(" Project Manager"); %>
+             Manager: <% out.print(user5.getUser(""+p.getUser().getId()).getName()+" "+ user5.getUser(""+p.getUser().getId()).getSurname()); %>
              <hr>
              <p class="proname">Description: <% out.print(p.getDiscription()); %></p>
              <p class="proname">Type: <% out.print(p.getType()); %></p>
@@ -186,10 +175,6 @@ searchString="";
          
          </div>
          <div id="link2" class="prodetail">
-             <% out.print(request.getParameter("name")+"  --2222--"); %>
-             <% out.print(request.getParameter("name")+"  --2222--");
-             out.print("size: "+projects.getProjectUser(p.getId()).size());
-             %>
              
              
              
@@ -216,7 +201,6 @@ for (int i=0; i<projects.getProjectUser(p.getId()).size(); i++){
 </table>
          </div>
          <div id="link3" class="prodetail">
-             <% out.print(request.getParameter("name")+"  --33--"); %>
              
              <table class="table" style="margin-left: 100px; margin-top: 50px;">
                         <tr>

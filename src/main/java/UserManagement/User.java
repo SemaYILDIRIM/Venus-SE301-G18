@@ -150,6 +150,19 @@ public class User  implements java.io.Serializable {
         
         return Integer.parseInt(photo.get(0).toString());
     }
+      public User getUserforAdmin(String name){
+        Session session = HibernateSettings.HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+//        session.save(this);
+        session.getTransaction().commit();
+        Transaction tx;
+        tx=session.beginTransaction();
+        Query query = session.createQuery("from UserManagement.User where email= :namee");
+        query.setParameter("namee", name);
+        List<User> user=query.list();
+        
+        return user.get(0);
+    }
      /**
      * @param id the id to set
      * context User inv:

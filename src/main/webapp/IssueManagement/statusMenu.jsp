@@ -5,51 +5,47 @@
 <jsp:useBean id="issueresolve"  class="proman.ProjectManagementFacade"></jsp:useBean>
 <jsp:useBean id="changestatus"  class="IssueManagement.IssueManagementFacade"></jsp:useBean>
      <jsp:useBean id="userissue"  class="UserManagement.User" scope="session"></jsp:useBean>
-     <% String status="";
-   if(request.getParameter("Submit")==null){}
-            else{
-                            if(request.getParameter("Submit").equals("Resolved")){
-                                status="Resolved";
-                            out.print("Resolved");
-                            }
-                            else if(request.getParameter("Submit").equals("Reopen")){
-                                status="Reopen";
-                                out.print("Reopen");
-                            }
-   }
-   HttpSession session1= request.getSession();
-   String g=""+session1.getAttribute("id");
-   List<User> userlist;
-   String role=userissue.getUser(g).getRole();
-//issueresolve.getlistofUser(userissue.getUser(g).getRole()+"",Integer.parseInt(g));
-List<proman.Projectuser> l=issueresolve.getProjectUser(Integer.parseInt(request.getParameter("name")));
-if(status.equals("Resolved")){
-if(role.contains("manager")||role.contains("developer")){
-           
-        for(int ii=0;ii<l.size();ii++){
-            String x=l.get(ii).getUser().getId()+"";
-          if(userissue.getUser(x).getRole().contains("tester")){
-                issueresolve.getUserlist().add(userissue.getUser(x));
-          }
-      }
-       }
+        <% String status="";
+                if(request.getParameter("Submit")==null){}
+                else{
+                    if(request.getParameter("Submit").equals("Resolved")){
+                        status="Resolved";
+                    }
+                    else if(request.getParameter("Submit").equals("Reopen")){
+                        status="Reopen";
+                    }
+                    }
+            HttpSession session1= request.getSession();
+            String g=""+session1.getAttribute("id");
+            List<User> userlist;
+            String role=userissue.getUser(g).getRole();
+            //issueresolve.getlistofUser(userissue.getUser(g).getRole()+"",Integer.parseInt(g));
+            List<proman.Projectuser> l=issueresolve.getProjectUser(Integer.parseInt(request.getParameter("name")));
+            if(status.equals("Resolved")){
+                    if(role.contains("manager")||role.contains("developer")){
+                        for(int ii=0;ii<l.size();ii++){
+                        String x=l.get(ii).getUser().getId()+"";
+                        if(userissue.getUser(x).getRole().contains("tester")){
+                            issueresolve.getUserlist().add(userissue.getUser(x));
+                        }
+                    }
+                }
 
-       else if(userissue.getUser(g).getRole().contains("tester")){
-                User manager=issueresolve.getProjectDetail(request.getParameter("name")).getUser();
-                issueresolve.getUserlist().add(userissue.getUser(manager.getId()+""));
-                   // /issueresolve.getUserlist().add(userissue.getUser(manager.getId()+""));
-          
-      
-       }}
-else{
-    for(int ii=0;ii<l.size();ii++){
-            String x=l.get(ii).getUser().getId()+"";
-          if(userissue.getUser(x).getRole().contains("developer")){
-                issueresolve.getUserlist().add(userissue.getUser(x));
-          }
-      }
-}
-%>
+                    else if(userissue.getUser(g).getRole().contains("tester")){
+                        User manager=issueresolve.getProjectDetail(request.getParameter("name")).getUser();
+                        issueresolve.getUserlist().add(userissue.getUser(manager.getId()+""));
+                           // /issueresolve.getUserlist().add(userissue.getUser(manager.getId()+""));
+                      }
+            }
+   else{
+       for(int ii=0;ii<l.size();ii++){
+               String x=l.get(ii).getUser().getId()+"";
+             if(userissue.getUser(x).getRole().contains("developer")){
+                   issueresolve.getUserlist().add(userissue.getUser(x));
+             }
+         }
+   }
+        %>
 
 
     

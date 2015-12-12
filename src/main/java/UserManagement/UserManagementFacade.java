@@ -29,6 +29,10 @@ public class UserManagementFacade {
     public User getUserInfo(String id){
         return u.getUser(id);
             }
+    
+    public User getValidUser(String email){
+        return u.getUserforAdmin(email);
+            }
     /**
      * This method saves the user to database
      * context User inv:
