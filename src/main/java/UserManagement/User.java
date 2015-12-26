@@ -286,9 +286,7 @@ public class User  implements java.io.Serializable {
         transaction.commit();
         session.close();
         
-        System.out.println("listt->" + listt); 
-    
-    
+       
         return listt;
     }
     
