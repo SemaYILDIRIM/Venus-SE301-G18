@@ -24,8 +24,13 @@
 
 <div class="aa">
      <% 
+            List<Project> projectList = project.getAllProjects();
+            request.setAttribute("projectList", projectList);
+         
              String pId = request.getParameter("projectId");
-             
+             if(pId == null && projectList != null && !projectList.isEmpty()){
+                 pId = String.valueOf(projectList.get(0).getId());
+             }
              if(pId != null){
                  List<User> userList = userFcd.getUserByProject(Integer.parseInt(pId));
                  request.setAttribute("userList", userList);
@@ -47,8 +52,8 @@
                                        
                                             Project:
                                             <br>
-                                                    <select id="projectListId" name="projectListId" onchange=onchange"changeFunc();">
-                                                            <c:forEach var="option" items="${project.allProjects}">
+                                                    <select id="projectListId" name="projectListId" onchange="changeFunc();">
+                                                            <c:forEach var="option" items="${projectList}">
                                                                 <option value="${option.id}" ${option.id == selectedProjectId ? 'selected="selected"' : ''}><c:out value="${option.name}" /></option>
                                                             </c:forEach>
                                                         </select><br> <br>   
