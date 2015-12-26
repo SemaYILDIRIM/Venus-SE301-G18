@@ -56,7 +56,7 @@
                                                     Issue Description:<br>
                                                     <input class="imgp2" type = "textarea" name = "dsc" cols="40" rows="10" maxlength="1000" placeholder="Description" required=""/>
                                                    <br>
-                                                        <input class="btn" type = "submit" name = "Submit" value = "Create" />
+                                                   <input class="btn" type = "submit" name = "Submit" value = "Create" onclick="myFunctionIssue()"/>
                                                     
                                                         <input class="btn" type = "reset" name = "reset" value = "Cancel" />
                                                    
@@ -96,8 +96,14 @@
                                 p.setUserByAssignee(userFcd.findById(Integer.parseInt(selectedUserId)));
                                 
                                 p.saveIssue();
-                                out.print("Issue is Saved");
+                                String redirectURL = "/A-Venus/Home.jsp";
+                                response.sendRedirect(redirectURL);
     }}
             
              
             %>
+    <script>
+function myFunctionIssue() {
+    alert("Issue is Saved!");
+}
+</script>

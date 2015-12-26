@@ -38,7 +38,7 @@
                             <tr>
                             <td><a href="${element.documentpath}"><img id="iii" src="${element.documentpath}" ></a></td>
                             <td> <form method="post" action="/A-Venus/Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=request.getParameter("issueid")%>&userid=<%=request.getParameter("userid")%>">
-                               <input type="text" value="${element.id}" name="attachid" style="width: 0px; height: 0px;" >
+                               <input type="text" value="${element.id}" name="attachid" style="margin-top: -2500px; width: 0px; height: 0px;" >
                                     <input type="submit" value="Delete File" name="Submit" >
               
               </form></td>
@@ -51,7 +51,7 @@
                 <input type="file" id="files" name="files[]" />
                 <output id="list"></output>
                 <input type="submit" name="Submit" value="Save">
-                <input type="text" value="" id="d" name="d" style="width: 0px; height:0px;">
+                <input type="text" value="" id="d" name="d" style="margin-top: -2500px; width: 0px; height: 0px;">
         </form>
 <script>
         function handleFileSelect(evt) {

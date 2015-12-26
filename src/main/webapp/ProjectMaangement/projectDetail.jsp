@@ -4,7 +4,6 @@
 <jsp:useBean id="issueFcd"  class="IssueManagement.IssueManagementFacade"></jsp:useBean>
  <jsp:useBean id="user5"  class="UserManagement.User" scope="session"></jsp:useBean>
  <jsp:useBean id="userfacade"  class="UserManagement.UserManagementFacade" scope="session"></jsp:useBean>
- <script src="pager.js" type="text/javascript"></script>
  <div class="detail">
      <div class="maindetail">
          <h2 class="proname2"><img src="http://teachingresourcesbeta.businesscatalyst.com/images/icons/icon-circle-arrow-down_grey.png" style="width: 50px;height: 50px; margin-top: 10px;"></img>
@@ -54,7 +53,7 @@
              
              
          <div id="link2" class="prodetail">
-                <table class="table" style="margin-left: 100px; margin-top: 50px;">
+                <table class="table">
                    <thead> <tr>
                     <th style="background-color: #407fbf; color: white;">User Name</th>
                     <th style="background-color: #407fbf; color: white;" >User Surname </th>
@@ -62,7 +61,7 @@
                     <th style="background-color: #407fbf; color: white;">Email</th>
                   </tr>
                   </thead> 
-                        <tbody id="myTable">
+                        <tbody id="myTable2">
                     <% 
                         for (int i=0; i<projects.getProjectUser(p.getId()).size(); i++){
                         String u=projects.getProjectUser(p.getId()).get(i).getUser().getId()+"";
@@ -78,9 +77,13 @@
 
                </tbody>
                     </table>
-                        <div class="col-md-12 text-center">
-      <ul class="pagination pagination-lg pager" id="myPager"></ul>
-      </div>
+                        
+       
+            <ul class="pagination pagination-lg pager" id="myPager2">
+            
+            </ul>
+    
+        
         
          
          </div>
@@ -108,9 +111,8 @@
                  result="";
              }
              if (!searchResults.isEmpty()) {
-                 out.print(searchResults.get(0).getName());
                    %>
-     <table class="table" style="margin-left: 100px; margin-top: 50px;">
+     <table class="table">
         <tr>
         <th  style="background-color: #407fbf; color: white;">User Name</th>
         <th style="background-color: #407fbf; color: white;">User Surname</th>
@@ -124,7 +126,16 @@
             <td><a href=""><%=searchResults.get(i).getSurname()%></a></td>
             <td><a href=""><%=searchResults.get(i).getRole()%></a></td>
             <td>
-                <form method = "post" action = "Projects.jsp?name=<%=request.getParameter("name")%>&uid=<%=searchResults.get(i).getId()%>" >  <input class="btn" type = "submit" name = "Submit" value = "Add" /></form>
+                <form method = "post" action = "Projects.jsp?name=<%=request.getParameter("name")%>&uid=<%=searchResults.get(i).getId()%>" >  
+                    <%
+                    if(projects.listUserProject(searchResults.get(i).getId(), Integer.parseInt(request.getParameter("name"))).size()>0){
+                        
+                    
+                    %>
+                    <input class="btn" type = "text" name = "Submit" value = "Already in project" disabled="" style="width: 300px;" /></form>
+                    <%}else{%>
+                    <input class="btn" type = "submit" name = "Submit" value = "Add" /></form>
+                    <%}%>
             </td>
         </tr>
             <%}
@@ -134,7 +145,7 @@
 </table><%}}}%>
          </div>
          <div id="link4" class="prodetail">
-                    <table class="table" style="margin-left: 100px; margin-top: 50px;">
+                    <table class="table">
                        <thead> <tr>
                             <th  style="background-color: #407fbf; color: white;">Issue Discription</th>
                             <th style="background-color: #407fbf; color: white;">Issue Name</th>
@@ -144,7 +155,7 @@
                             <th style="background-color: #407fbf; color: white;">Issue DueDate</th>
                         </tr>
                         </thead> 
-                        <tbody id="myTable">
+                        <tbody id="myTable3">
                         <% 
     
                          for (int i=0; i<issueFcd.getIssuesManager(request.getParameter("name")).size(); i++){%>
@@ -159,9 +170,7 @@
                         </tr> <%}%>
                    </tbody>
                     </table>
-                        <div class="col-md-12 text-center">
-      <ul class="pagination pagination-lg pager" id="myPager"></ul>
-      </div>
+      <ul class="pagination pagination-lg pager" id="myPager3"></ul>
              
              
              
@@ -196,7 +205,7 @@
          
          </div>
          <div id="link2" class="prodetail">
-            <table class="table" style="margin-left: 100px; margin-top: 50px;">
+            <table class="table" >
                <thead> <tr>
                 <th  style="background-color: #407fbf; color: white;">User Name</th>
                 <th style="background-color: #407fbf; color: white;" >User Surname </th>
@@ -204,7 +213,7 @@
                 <th style="background-color: #407fbf; color: white;">Email</th>
                 </tr>
                 </thead> 
-                        <tbody id="myTable">
+                        <tbody id="myTable4">
                 <% 
                 for (int i=0; i<projects.getProjectUser(p.getId()).size(); i++){
                 String u=projects.getProjectUser(p.getId()).get(i).getUser().getId()+"";
@@ -220,13 +229,11 @@
     
            </tbody>
                     </table>
-                        <div class="col-md-12 text-center">
-      <ul class="pagination pagination-lg pager" id="myPager"></ul>
-      </div>
+      <ul class="pagination pagination-lg pager" id="myPager4"></ul>
          </div>
          <div id="link3" class="prodetail">
              
-             <table class="table" style="margin-left: 100px; margin-top: 50px;">
+             <table class="table">
                        <thead> <tr>
                             <th  style="background-color: #407fbf; color: white;">Issue Discription</th>
                             <th style="background-color: #407fbf; color: white;">Issue Name</th>
@@ -236,7 +243,7 @@
                             <th style="background-color: #407fbf; color: white;">Issue DueDate</th>
                         </tr>
                         </thead> 
-                        <tbody id="myTable">
+                        <tbody id="myTable5">
                         <% 
     
                          for (int i=0; i<issueFcd.getIssuesAssignee(g,request.getParameter("name")).size(); i++){%>
@@ -251,9 +258,7 @@
                         </tr> <%}%>
                     </tbody>
                     </table>
-                        <div class="col-md-12 text-center">
-      <ul class="pagination pagination-lg pager" id="myPager"></ul>
-      </div>
+      <ul class="pagination pagination-lg pager" id="myPager5"></ul>
          </div>
      </div>
        

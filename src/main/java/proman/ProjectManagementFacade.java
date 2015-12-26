@@ -37,6 +37,10 @@ public class ProjectManagementFacade {
         
       return getPp().getProUser(id); 
     }
+    public List<Projectuser> listUserProject(int id,int proid){
+        
+      return getPp().getUserProject(id,proid); 
+    }
     /**
      * This method gets Project User Detail information  from database
      * by using ProjectUser table

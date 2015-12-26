@@ -62,6 +62,20 @@ tx.commit();
 session.close();
 return  getList();
 }   
+    public List<Projectuser> getUserProject(int user_id,int pro_id){
+    Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.getTransaction().commit();
+        Transaction tx;
+        tx=session.beginTransaction();
+        Query query = session.createQuery("from  proman.Projectuser where user.id= :id and project_id= :pro_id");
+        query.setParameter("id", user_id);
+        query.setParameter("pro_id", pro_id);
+        setList(query.list());
+tx.commit();
+session.close();
+return  getList();
+} 
     public void saveProUser(Projectuser p) {
         
         Session session = HibernateUtil.getSessionFactory().openSession();

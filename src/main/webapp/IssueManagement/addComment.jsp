@@ -6,10 +6,12 @@
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  <jsp:useBean id="issueman"  class="IssueManagement.IssueManagementFacade"></jsp:useBean>
+ <jsp:useBean id="userc"  class="UserManagement.UserManagementFacade"></jsp:useBean>
  <div style="float: left;">
  <table  class="table table-hover" style="width: 500px; margin-right: 60px; margin-left: 80px;">
      <thead>
          <th>Comments</th>
+         <th>Writer</th>
          <th>Delete</th>
      </thead>
      <tbody>
@@ -20,9 +22,10 @@
      
         <tr>
             <td><%=issueman.getList().get(ic).getComment()%></td>
+            <td><%=userc.getUserInfo(issueman.getList().get(ic).getUser().getId()+"").getName()%></td>
           <td> <form method="post" action="/A-Venus/Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=request.getParameter("issueid")%>&userid=<%=request.getParameter("userid")%>">
-                  <input type="text" value="<%=issueman.getList().get(ic).getId()%>" name="commentid" style="width: 0px; height: 0px;" >
-                  <input type="text" value="<%=issueman.getList().get(ic).getUser().getId()%>" name="commentuid" style="width: 0px; height: 0px;" >
+                  <input type="text" value="<%=issueman.getList().get(ic).getId()%>" name="commentid" style="margin-top: -2500px; width: 0px; height: 0px;" >
+                  <input type="text" value="<%=issueman.getList().get(ic).getUser().getId()%>" name="commentuid" style="margin-top: -2500px; width: 0px; height: 0px;" >
                   <input type="submit" value="Delete" name="Submit" >
               
               </form></td>

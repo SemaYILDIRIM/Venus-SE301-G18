@@ -27,17 +27,18 @@
        
 <%
            }
+          
            else{
+              
            if(request.getParameter("showAllProject").contains("Show All Projects")){
                 if(user.getUser(g).getRole().contains("manager")){ %>
                 
-                    <table class="table" style="margin-left: 100px; margin-top: 50px;">
+                    <table class="table" style="margin-left: 50px; margin-top: 50px; width: 95%">
                         <thead> <tr>
                             <th  style="background-color: #407fbf; color: white;">Project Discription</th>
                             <th style="background-color: #407fbf; color: white;">Project Name</th>
                             <th style="background-color: #407fbf; color: white;">Project Type</th>
                             <th style="background-color: #407fbf; color: white;">Project Creation Date</th>
-                            <th style="background-color: #407fbf; color: white;">Project Priority</th>
                             <th style="background-color: #407fbf; color: white;">Project DueDate</th>
                         </tr>
                         </thead> 
@@ -50,7 +51,6 @@
                             <td><a href="Projects.jsp?name=<%=((Project)project2.getProjects(ss).get(i)).getId()%>&uid=0"><%=((Project)project2.getProjects(ss).get(i)).getName()%></a></td>
                             <td><a href="Projects.jsp?name=<%=((Project)project2.getProjects(ss).get(i)).getId()%>&uid=0"><%=((Project)project2.getProjects(ss).get(i)).getType()%></a></td>
                             <td><a href="Projects.jsp?name=<%=((Project)project2.getProjects(ss).get(i)).getId()%>&uid=0"><%=((Project)project2.getProjects(ss).get(i)).getCreationDate()%></a></td>
-                            <td><a href="Projects.jsp?name=<%=((Project)project2.getProjects(ss).get(i)).getId()%>&uid=0"><%=((Project)project2.getProjects(ss).get(i)).getPriority()%></a></td>
                             <td><a href="Projects.jsp?name=<%=((Project)project2.getProjects(ss).get(i)).getId()%>&uid=0"><%=((Project)project2.getProjects(ss).get(i)).getDueDate()%></a></td>
 
                         </tr> <%}%>
@@ -58,7 +58,7 @@
                     </table>
                         <div class="col-md-12 text-center">
       <ul class="pagination pagination-lg pager" id="myPager"></ul>
-      </div>
+                        </div>
                     <% }
                 
                 else{%>
@@ -87,7 +87,10 @@
                         </tr>
 
                         <%} }}
-           }%>
+           
+           }
+                         
+                        %>
            </tbody>
 </table>
  
