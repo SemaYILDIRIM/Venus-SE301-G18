@@ -1,7 +1,7 @@
 <%@page import="IssueManagement.Issue"%>
 <jsp:useBean id="issue3"  class="IssueManagement.IssueManagementFacade"></jsp:useBean>
     <jsp:useBean id="userr"  class="UserManagement.UserManagementFacade"></jsp:useBean>
-<%
+<%  HttpSession status= request.getSession(true);
     String issueid=request.getParameter("issueid");
     String userid=request.getParameter("userid");
     Issue i=issue3.getIssueById(issueid, userid);
@@ -9,14 +9,17 @@
     <div class="issuedetail">
 
              <ul>
+                 <%if(Integer.parseInt(status.getAttribute("id")+"") == i.getUserByAssignee().getId()){%>
                 <li  style="float: right; margin-right: 60%; height: 20px;width: 150px;" onmouseout="hide4()" onmouseover="show4()">Change Issue's Status
                     <div id="status" style="margin-top: 0px; float: right; margin-right: 60%; visibility: hidden">
                         <ul>
+                            
                             <li style="width: 145px;">
                                 <form method="post" action="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=request.getParameter("issueid")%>&userid=<%=request.getParameter("userid")%>">
                                     <input type="submit" formaction="" style="width: 145px; margin-top:-1px;" class="loginbuttons" value="Inprogress" name="Submit" >
                                 </form>
                             </li>
+                            <%if(i.getStatus().contains("Inprogress")){%>
                             <li style="width: 101px;width: 100px; margin-top:0px;">
                                 <form method="post" action="changeStatus.jsp?name=<%=request.getParameter("name")%>&issueid=<%=request.getParameter("issueid")%>&userid=<%=request.getParameter("userid")%>">
                                     <input type="submit" style="width: 145px; margin-top:-1px;" class="loginbuttons" value="Resolved" name="Submit" >
@@ -25,9 +28,10 @@
                                     <input type="submit" style="width: 145px; margin-top:-1px;" class="loginbuttons" value="Reopen" name="Submit" >
                                 </form> 
                             </li>
+                            <%}%>
                         </ul>
                     </div>
-                </li>
+                </li><%}%>
             </ul>
 
 
