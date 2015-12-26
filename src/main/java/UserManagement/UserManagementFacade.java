@@ -70,6 +70,10 @@ public class UserManagementFacade {
         return u.getAllUserr();
     }
     
+       public List getUserByProject(int projectId){
+        return u.getUserByProject(projectId);
+    }
+    
     /**
      * @param sessionl the sessionl to set
      */

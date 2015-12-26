@@ -274,6 +274,24 @@ public class User  implements java.io.Serializable {
         return listt;
     }
     
+    public List getUserByProject(int projectId){
+       Session session = HibernateUtil.getSessionFactory().openSession();
+      
+        Transaction transaction;
+        transaction=session.beginTransaction();
+        Query query = session.createQuery("select u.user from proman.Projectuser u where u.project.id=:projectId");
+        query.setParameter("projectId", projectId);
+         
+        List<User> listt = query.list();
+        transaction.commit();
+        session.close();
+        
+        System.out.println("listt->" + listt); 
+    
+    
+        return listt;
+    }
+    
     public User loginn(String name, String password){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();

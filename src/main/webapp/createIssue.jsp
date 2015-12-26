@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="common.VenusSession"%>
@@ -9,7 +10,30 @@
 <jsp:useBean id="project" class="proman.ProjectManagementFacade"></jsp:useBean>
 <jsp:useBean id="issue" class="IssueManagement.IssueManagementFacade"></jsp:useBean>
 <jsp:useBean id="userFcd"  class="UserManagement.UserManagementFacade"></jsp:useBean>
+<script type="text/javascript">
+
+   function changeFunc() {
+    var selectBox = document.getElementById("projectListId");
+    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+    window.location="Home.jsp?projectId="+selectedValue+"#openIssueModal";
+    
+   }
+
+  </script>
+
+
 <div class="aa">
+     <% 
+             String pId = request.getParameter("projectId");
+             
+             if(pId != null){
+                 List<User> userList = userFcd.getUserByProject(Integer.parseInt(pId));
+                 request.setAttribute("userList", userList);
+                 request.setAttribute("selectedProjectId", pId);
+             }
+                   
+             %>
+             
             <div id="openIssueModal" class="modalbg">
                 <div class="dialog">
                     <a href="#close" title="Close" class="close">X</a>
@@ -23,9 +47,9 @@
                                        
                                             Project:
                                             <br>
-                                                    <select id="projectListId" name="projectListId">
+                                                    <select id="projectListId" name="projectListId" onchange=onchange"changeFunc();">
                                                             <c:forEach var="option" items="${project.allProjects}">
-                                                                <option value="${option.id}"><c:out value="${option.name}" /></option>
+                                                                <option value="${option.id}" ${option.id == selectedProjectId ? 'selected="selected"' : ''}><c:out value="${option.name}" /></option>
                                                             </c:forEach>
                                                         </select><br> <br>   
                                                    Issue Type:<br> 
@@ -47,7 +71,7 @@
                                                         </select><br> <br>
                                                    Assignee:<br>
                                                         <select id="userListId" name="userListId">
-                                                            <c:forEach var="option" items="${userFcd.allUser}">
+                                                            <c:forEach var="option" items="${userList}">
                                                                 <option value="${option.id}"><c:out value="${option.name}" /></option>
                                                             </c:forEach>
                                                         </select><br> <br>
