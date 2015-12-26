@@ -1,0 +1,19 @@
+.issue{
+    margin-left: 30px;
+}
+.issuedetail{
+    width: 77%;
+    height: auto;
+    margin-top: 15px;
+    margin-left: 140px;
+    background-color: #EDEDED;
+    float: left;
+}
+#iii{
+    height: 50px;
+    width: 50px;
+}
+.table td{
+    height: 50px;
+    width: 50px;
+}

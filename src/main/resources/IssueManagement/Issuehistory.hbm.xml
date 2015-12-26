@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 6, 2015 9:28:16 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="se" name="IssueManagement.Issuehistory" optimistic-lock="version" table="issuehistory">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="IssueManagement.Issue" fetch="select" name="issue">
+      <column name="issue_id" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="UserManagement.User" fetch="select" name="user">
+      <column name="user_id" not-null="true"/>
+    </many-to-one>
+    <property name="updateDate" type="date">
+      <column length="10" name="updateDate"/>
+    </property>
+  </class>
+</hibernate-mapping>
