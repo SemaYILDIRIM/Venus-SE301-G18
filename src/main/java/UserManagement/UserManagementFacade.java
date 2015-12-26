@@ -41,6 +41,9 @@ public class UserManagementFacade {
     public String getpicture(String name){
        return u.getpicture(name);
     }
+    public boolean exists(String email){
+       return u.validusercheck(email);
+    }
     
     
     public User getLoggedUser(){

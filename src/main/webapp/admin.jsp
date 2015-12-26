@@ -16,7 +16,8 @@
     </head>
     <body>
 
-    <%HttpSession s = request.getSession();%>
+    <%HttpSession s = request.getSession();
+    %>
  <div class="header">
                         <img class="img" src="http://icons.iconarchive.com/icons/zairaam/bumpy-planets/256/09-uranus-icon.png" alt="Mountain View">
                             <div>
@@ -56,8 +57,7 @@
              </li></a>
              
              
-         </ul>
-             
+         </ul>  
          <div id="link11" class="prodetail2">
           <form method = "post" action = "admin.jsp" style="margin-top: 20px; -moz-box-shadow: inset 0 0 15px #E8E8E8;-webkit-box-shadow: inset 0 0 15px #E8E8E8;box-shadow: inner 0 0 15px #E8E8E8;" onsubmit="return validateForm()">
               <br>
@@ -75,7 +75,7 @@
                 <img class="imgp"  src="https://dialectline.files.wordpress.com/2013/06/sign-error-icon.png"  style="margin-left: 20px; width: 15px; height: 15px; visibility: hidden">
                 <br>
                 <p class="n" style="margin-left: 20px;">Password:</p>
-                <input class="imgp" style="margin-left: 20px;" type = "text" name = "upassword" placeholder="Project Name" required=""/>
+                <input class="imgp" style="margin-left: 20px;" type = "password" name = "upassword" placeholder="Password" required=""/>
                 <img class="imgp" id="img2" src="https://dialectline.files.wordpress.com/2013/06/sign-error-icon.png" style="margin-left: 20px; width: 15px; height: 15px; visibility: hidden">
                 <br>
                 <p class="na" style="margin-left: 20px;">Role</p>
@@ -86,9 +86,10 @@
                         <option value="admin">Admin</option>
                 </select>
                 <br>
+                
                 <br><br><br>
                 <input class="btn" style="margin-left: 20px;" type = "submit" name = "Submit"
-                value = "Save" />
+                       value = "Save" onclick="saveUser()" />
                 <input class="btn2" type = "reset" value = "Reset" />
                 </form>
          </div>
@@ -138,9 +139,15 @@
                 <td><a href=""><%=searchResults.get(i).getRole()%></a></td>
                 <td><a href=""><%=searchResults.get(i).getStatus()%></a></td>
                 <td><a href=""><%=searchResults.get(i).getCreationDate()%></a></td>
+                <%if(searchResults.get(i).getId()!= Integer.parseInt(s.getAttribute("id")+"")){
+                    
+                %>
                 <td>
-                    <form method = "post" action = "admin.jsp?uid=<%=searchResults.get(i).getId()%>" >  <input class="btn" type = "submit" name = "Submit" value = "Delete" /></form>
+                    <form method = "post" action = "admin.jsp?uid=<%=searchResults.get(i).getId()%>" >  <input class="btn" type = "submit" name = "Submit" value = "Delete" onclick="deleteUser()" /></form>
                 </td>
+                <%}else{%>
+                <td><input type = "text" name = "Submit" value = "You dont delete yourself" disabled="" style="width: 300px;" /></td>
+                <%}%>
             </tr>
         <%}
 searchString="";
@@ -157,8 +164,11 @@ searchString="";
             if(request.getParameter("Submit")==null){}
             else{
                 if(request.getParameter("Submit").equals("Save")){
+                    if(userfacade2.exists(request.getParameter("uemail"))){
+                      out.println("<p style=\"float:left;\">The email is belong to another user</p> <br> <br>"); 
+                }else{
                    userfacade2.SaveUser(request.getParameter("uname"),request.getParameter("usurname"),request.getParameter("uemail"),request.getParameter("upassword"),request.getParameter("urole"));
-                }
+                }}
                 else if(request.getParameter("Submit").equals("Delete")){
                     userfacade2.deleteUser(request.getParameter("uid"));
                 }
@@ -190,3 +200,11 @@ searchString="";
                                                         document.getElementById("profileoption3").style.visibility = "hidden";
                                                     }
                                                 </script>
+            <script>
+function saveUser() {
+    alert("User is Saved!");
+}
+function deleteUser() {
+    alert("User is Deleted!");
+}
+</script>

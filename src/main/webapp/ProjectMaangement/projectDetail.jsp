@@ -34,7 +34,7 @@
                  Assign Project to Staff
              </li></a>
              <a  href="#link4"><li>
-                 Issues
+                 All Issues
              </li></a>
              <a  href="#link5"><li>
                  Reported By Me
@@ -181,7 +181,7 @@
          </div>
                    
         <div id="link5" class="prodetail">
-            <table class="table" style="margin-left: 100px; margin-top: 50px;">
+            <table class="table">
                 <thead> 
                     <tr>
                         <th  style="background-color: #407fbf; color: white;">Issue Description</th>
@@ -208,9 +208,7 @@
                 <%}%>
                     </tbody>
                     </table>
-            <div class="col-md-12 text-center">
                 <ul class="pagination pagination-lg pager" id="myPager"></ul>
-            </div>
         </div>
                     
      </div>
@@ -224,7 +222,7 @@
                  Project members
              </li></a>
              <a  href="#link3"><li>
-                My Issues
+                My Open Issues
              </li></a>
              
              <a  href="#link5"><li>
@@ -306,7 +304,7 @@
                     
                     
         <div id="link5" class="prodetail">
-            <table class="table" style="margin-left: 100px; margin-top: 50px;">
+            <table class="table">
                 <thead> 
                     <tr>
                         <th  style="background-color: #407fbf; color: white;">Issue Description</th>
@@ -334,9 +332,7 @@
                 <%}%>
                     </tbody>
                     </table>
-            <div class="col-md-12 text-center">
                 <ul class="pagination pagination-lg pager" id="myPager"></ul>
-            </div>
         </div>
     </div>
        

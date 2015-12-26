@@ -111,6 +111,24 @@ public class User  implements java.io.Serializable {
             return true;
         }return false;
     }
+    public boolean validusercheck(String email){
+      Session session = HibernateSettings.HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+//        session.save(this);
+        session.getTransaction().commit();
+        Transaction tx;
+        tx=session.beginTransaction();
+        Query query = session.createQuery("select id from UserManagement.User where email= :email");
+        query.setParameter("email", email);
+        List usercheck=query.list();
+        
+        if(usercheck.size()>0){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
     /**
      * @param name the name to set
      * context User inv:
