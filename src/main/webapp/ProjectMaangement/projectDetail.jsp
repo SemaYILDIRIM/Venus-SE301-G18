@@ -1,4 +1,5 @@
 <%@page import="UserManagement.User"%>
+<%@page import="IssueManagement.Issue"%>
 <%@page import="java.util.List"%>
 <jsp:useBean id="projects"  class="proman.ProjectManagementFacade"></jsp:useBean>
 <jsp:useBean id="issueFcd"  class="IssueManagement.IssueManagementFacade"></jsp:useBean>
@@ -34,6 +35,9 @@
              </li></a>
              <a  href="#link4"><li>
                  Issues
+             </li></a>
+             <a  href="#link5"><li>
+                 Reported By Me
              </li></a>
          </ul>
              
@@ -147,7 +151,7 @@
          <div id="link4" class="prodetail">
                     <table class="table">
                        <thead> <tr>
-                            <th  style="background-color: #407fbf; color: white;">Issue Discription</th>
+                            <th  style="background-color: #407fbf; color: white;">Issue Description</th>
                             <th style="background-color: #407fbf; color: white;">Issue Name</th>
                             <th style="background-color: #407fbf; color: white;">Issue Type</th>
                             <th style="background-color: #407fbf; color: white;">Issue Creation Date</th>
@@ -175,6 +179,40 @@
              
              
          </div>
+                   
+        <div id="link5" class="prodetail">
+            <table class="table" style="margin-left: 100px; margin-top: 50px;">
+                <thead> 
+                    <tr>
+                        <th  style="background-color: #407fbf; color: white;">Issue Description</th>
+                        <th style="background-color: #407fbf; color: white;">Issue Name</th>
+                        <th style="background-color: #407fbf; color: white;">Issue Type</th>
+                        <th style="background-color: #407fbf; color: white;">Issue Creation Date</th>
+                        <th style="background-color: #407fbf; color: white;">Issue Priority</th>
+                        <th style="background-color: #407fbf; color: white;">Issue DueDate</th>
+                    </tr>
+                </thead> 
+                <tbody id="myTable">
+                <% 
+                    List<Issue> issueList = issueFcd.getAllIssueByMe();     
+                    for (int i=0; i<issueList.size(); i++){%>
+                        <tr>
+                            <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getDescription()%></a></td>
+                            <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getSummary()%></a></td>
+                            <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getDescription()%></a></td>
+                            <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getCreationDate()%></a></td>
+                            <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getPriority()%></a></td>
+                            <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getDueDate()%></a></td>
+                        </tr> 
+                        
+                <%}%>
+                    </tbody>
+                    </table>
+            <div class="col-md-12 text-center">
+                <ul class="pagination pagination-lg pager" id="myPager"></ul>
+            </div>
+        </div>
+                    
      </div>
      <%}else{%>
       <div class="tab">
@@ -187,6 +225,10 @@
              </li></a>
              <a  href="#link3"><li>
                 My Issues
+             </li></a>
+             
+             <a  href="#link5"><li>
+                Reported By Me
              </li></a>
          </ul>
              
@@ -235,7 +277,7 @@
              
              <table class="table">
                        <thead> <tr>
-                            <th  style="background-color: #407fbf; color: white;">Issue Discription</th>
+                            <th  style="background-color: #407fbf; color: white;">Issue Description</th>
                             <th style="background-color: #407fbf; color: white;">Issue Name</th>
                             <th style="background-color: #407fbf; color: white;">Issue Type</th>
                             <th style="background-color: #407fbf; color: white;">Issue Creation Date</th>
@@ -260,7 +302,43 @@
                     </table>
       <ul class="pagination pagination-lg pager" id="myPager5"></ul>
          </div>
-     </div>
+                    
+                    
+                    
+        <div id="link5" class="prodetail">
+            <table class="table" style="margin-left: 100px; margin-top: 50px;">
+                <thead> 
+                    <tr>
+                        <th  style="background-color: #407fbf; color: white;">Issue Description</th>
+                        <th style="background-color: #407fbf; color: white;">Issue Name</th>
+                        <th style="background-color: #407fbf; color: white;">Issue Type</th>
+                        <th style="background-color: #407fbf; color: white;">Issue Creation Date</th>
+                        <th style="background-color: #407fbf; color: white;">Issue Priority</th>
+                        <th style="background-color: #407fbf; color: white;">Issue DueDate</th>
+                    </tr>
+                </thead> 
+                <tbody id="myTable">
+                <% 
+                         List<Issue> issueList = issueFcd.getAllIssueByMe();
+                         
+                    for (int i=0; i<issueList.size(); i++){%>
+                        <tr>
+                            <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getDescription()%></a></td>
+                            <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getSummary()%></a></td>
+                            <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getDescription()%></a></td>
+                            <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getCreationDate()%></a></td>
+                            <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getPriority()%></a></td>
+                            <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getDueDate()%></a></td>
+                        </tr> 
+                        
+                <%}%>
+                    </tbody>
+                    </table>
+            <div class="col-md-12 text-center">
+                <ul class="pagination pagination-lg pager" id="myPager"></ul>
+            </div>
+        </div>
+    </div>
        
 <%}%>   
          <% 
