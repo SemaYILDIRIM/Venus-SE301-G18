@@ -218,19 +218,24 @@ public class User  implements java.io.Serializable {
      * @pre session.createQuery()
      * @return the List<User>
      */
-    public List<User> searchString(String search){
+    public List<User> searchString(String search, String valuee){
             Session session = HibernateSettings.HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.getTransaction().commit();
             Transaction tx;
             tx=session.beginTransaction();
-            Query query = session.createQuery("from UserManagement.User where name= :word or email= :email");
-            query.setParameter("word", search);
+            if(valuee.contains("email")){
+                Query query = session.createQuery("from UserManagement.User where email= :email");
             query.setParameter("email", search);
-        setList(query.list());
-    tx.commit();
-    session.close();
-    return getList();
+            setList(query.list());
+            }else{
+                Query query = session.createQuery("from UserManagement.User where name= :word");
+            query.setParameter("word", search);
+            setList(query.list());
+            }
+            tx.commit();
+            session.close();
+            return getList();
     }
     
     /**

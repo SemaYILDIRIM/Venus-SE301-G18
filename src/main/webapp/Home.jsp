@@ -63,7 +63,7 @@
                 
                 else{%>
                             
-                    <table class="table" style="margin-left: 100px; margin-top: 50px;">
+                    <table class="table" style="margin-left: 50px; margin-top: 50px; width: 95%">
                         <tr>
                             <th style="background-color: #407fbf; color: white;">Project Discription</th>
                             <th style="background-color: #407fbf; color: white;">Project Name</th>

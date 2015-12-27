@@ -79,7 +79,9 @@ public class IssueManagementFacade {
     public void IssueAssigneeStatus(int id,int assignee){
         issue.setIssueAssignee(id,assignee);
     }
-    
+    public void IssueCreator(int id,int creator){
+        issue.setIssueCreator(id,creator);
+    }
     
     
     //////////////////////////////

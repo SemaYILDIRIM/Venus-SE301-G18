@@ -23,12 +23,13 @@
         <tr>
             <td><%=issueman.getList().get(ic).getComment()%></td>
             <td><%=userc.getUserInfo(issueman.getList().get(ic).getUser().getId()+"").getName()%></td>
-          <td> <form method="post" action="/A-Venus/Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=request.getParameter("issueid")%>&userid=<%=request.getParameter("userid")%>">
+            <td> <form method="post" action="/A-Venus/Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=request.getParameter("issueid")%>&userid=<%=request.getParameter("userid")%>">
                   <input type="text" value="<%=issueman.getList().get(ic).getId()%>" name="commentid" style="margin-top: -2500px; width: 0px; height: 0px;" >
                   <input type="text" value="<%=issueman.getList().get(ic).getUser().getId()%>" name="commentuid" style="margin-top: -2500px; width: 0px; height: 0px;" >
                   <input type="submit" value="Delete" name="Submit" >
               
-              </form></td>
+                </form>
+            </td>
         </tr>
         <%}%>
     </tbody>

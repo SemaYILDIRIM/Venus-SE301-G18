@@ -1,4 +1,12 @@
-
+<style>
+    
+    #profileoption{
+        margin-left: -20px;
+    }
+    #formprofile{
+        margin-bottom: -10px;
+    }
+</style>
 <%@page import="UserManagement.User"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page import="java.util.List"%>
@@ -48,7 +56,9 @@ else{
                 issueresolve.getUserlist().add(userissue.getUser(x));
           }
       }
+    
 }
+
 %>
 
 
@@ -71,7 +81,7 @@ else{
                                                        
                                                 <br><br><br>
                                                 <input class="btn" type = "submit" name = "Submit"
-                                                value = "Send" />
+                                                       value = "Send" onclick="ChangeStatus()"/>
                                         </form>
         </div></div>
                                                    
@@ -80,9 +90,18 @@ else{
             else{
         if(request.getParameter("Submit").equals("Send")){
             changestatus.changestatus("Open", Integer.parseInt(request.getParameter("issueid")));
-            changestatus.IssueAssigneeStatus(Integer.parseInt(request.getParameter("issueid")),Integer.parseInt(request.getParameter("dev")));             
+            changestatus.IssueAssigneeStatus(Integer.parseInt(request.getParameter("issueid")),Integer.parseInt(request.getParameter("dev")));  
+            changestatus.IssueCreator(Integer.parseInt(request.getParameter("issueid")),Integer.parseInt(g));
+            String redirectURL = "/A-Venus/Home.jsp";
+                                response.sendRedirect(redirectURL);
         }
         
                 }
          %>
+         
+         <script>
+function ChangeStatus() {
+    alert("Issue is Assigned!");
+}
+</script>
   

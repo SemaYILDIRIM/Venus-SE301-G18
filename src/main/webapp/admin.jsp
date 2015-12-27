@@ -13,6 +13,7 @@
         <link href="adminControl.css" rel="stylesheet" type="text/css"/>
         <link href="header.css" rel="stylesheet" type="text/css"/>
         <link href="menu.css" rel="stylesheet" type="text/css"/>
+        
     </head>
     <body>
 
@@ -98,7 +99,7 @@
          <div id="link22" class="prodetail2">
            
              <form action="admin.jsp#link22" method="post">
-                <input type="radio" name="se" value="name" checked="">Name <input type="radio" name="se" value="email">Email <br><br>
+                <input type="radio" name="valuee" value="name" checked="">Name <input type="radio" name="valuee" value="email">Email <br><br>
                 <input name="search"/>
                 <input type="submit" value="Search" name="Submit" /></form>
              
@@ -108,7 +109,7 @@
                             if(request.getParameter("Submit").equals("Search")){
              String searchString = request.getParameter("search");
              String result="";
-             List<UserManagement.User> searchResults=userfacade2.SearchStaff(searchString);
+             List<UserManagement.User> searchResults=userfacade2.SearchStaff(searchString,request.getParameter("valuee"));
              if (searchString != null) {}
              if (searchResults.isEmpty()) {
                  result="No Result";
@@ -116,9 +117,8 @@
                  result="";
              }
              if (!searchResults.isEmpty()) {
-                 out.print(searchResults.get(0).getName());
                    %>
-     <table class="table" style="margin-left: -140px; margin-top: 50px;">
+     <table class="table" style="margin-left:-260px; margin-top: 50px; width:1400px">
             <tr>
                 <th  style=" visibility: hidden; background-color: #407fbf; color: white;">id</th>
                 <th  style="background-color: #407fbf; color: white;">User Name</th>

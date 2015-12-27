@@ -87,7 +87,7 @@
                                                    <br>
                                                    <input class="btn" type = "submit" name = "Submit" value = "Create" onclick="myFunctionIssue()"/>
                                                     
-                                                        <input class="btn" type = "reset" name = "reset" value = "Cancel" />
+                                                        <input class="btn" type = "reset" name = "reset" value = "Reset" />
                                                    
                                         </form>
                                     </div>

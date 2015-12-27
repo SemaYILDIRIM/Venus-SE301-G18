@@ -93,7 +93,7 @@
          </div>
          <div id="link3" class="prodetail">
              <form action="Projects.jsp?name=<%=request.getParameter("name")%>&uid=0#link3" method="post">
-                 <input type="radio" name="name" value="name" checked="">Name <input type="radio" name="name" value="email">Email <br><br>
+                 <input type="radio" name="valuee" value="name" checked="">Name <input type="radio" name="valuee" value="email">Email <br><br>
                  <input name="search"/>
                  <h6>Enter Staff's name or email to add</h6>
                  <input type="submit" value="Search" name="Submit" />
@@ -107,7 +107,7 @@
                             
              String searchString = request.getParameter("search");
              String result="";
-             List<UserManagement.User> searchResults=userfacade.SearchStaff(searchString);
+             List<UserManagement.User> searchResults=userfacade.SearchStaff(searchString,request.getParameter("valuee"));
              if (searchString != null) {}
              if (searchResults.isEmpty()) {
                  result="No Result";
@@ -199,7 +199,7 @@
                         <tr>
                             <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getDescription()%></a></td>
                             <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getSummary()%></a></td>
-                            <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getDescription()%></a></td>
+                            <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getType()%></a></td>
                             <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getCreationDate()%></a></td>
                             <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getPriority()%></a></td>
                             <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getDueDate()%></a></td>
@@ -317,13 +317,12 @@
                 </thead> 
                 <tbody id="myTable">
                 <% 
-                         List<Issue> issueList = issueFcd.getAllIssueByMe();
-                         
+                    List<Issue> issueList = issueFcd.getAllIssueByMe();     
                     for (int i=0; i<issueList.size(); i++){%>
                         <tr>
                             <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getDescription()%></a></td>
                             <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getSummary()%></a></td>
-                            <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getDescription()%></a></td>
+                            <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getType()%></a></td>
                             <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getCreationDate()%></a></td>
                             <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getPriority()%></a></td>
                             <td><a href="Issue.jsp?name=<%=request.getParameter("name")%>&issueid=<%=issueList.get(i).getId()%>&userid=<%=g%>"><%=issueList.get(i).getDueDate()%></a></td>

@@ -13,8 +13,8 @@ import org.hibernate.Transaction;
 public class UserManagementFacade {
     private User u=new User();
                            
-    public List<User> SearchStaff(String searchString){
-        return u.searchString(searchString);
+    public List<User> SearchStaff(String searchString, String valuee){
+        return u.searchString(searchString,valuee);
       }
     public User getUserInfo(String id){
         return u.getUser(id);
