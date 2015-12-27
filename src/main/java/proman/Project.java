@@ -4,6 +4,7 @@ package proman;
 import HibernateSettings.HibernateUtil;
 import UserManagement.User;
 import common.VenusSession;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -107,6 +108,19 @@ public class Project  implements java.io.Serializable {
         query.setParameter("userId", user.getId());
     
         List list = query.list();
+        
+        query = session.createQuery("from UserManagement.User u where u.id=:userId");
+        query.setParameter("userId", user.getId());
+        List<User> userList = query.list();
+        user = userList.get(0);
+        
+        if(user.getProjects()!=null){
+            if(list == null){
+                list = new ArrayList();
+            }
+            list.addAll(user.getProjects());
+        }
+        
         tx.commit();
         session.close();
         return list;
