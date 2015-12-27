@@ -24,7 +24,7 @@
 
 <div class="aa">
      <% 
-            List<Project> projectList = project.getAllProjects();
+            List<Project> projectList = project.getAllProjectsOfUser();
             request.setAttribute("projectList", projectList);
          
              String pId = request.getParameter("projectId");

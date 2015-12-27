@@ -3,6 +3,7 @@ package proman;
 
 import HibernateSettings.HibernateUtil;
 import UserManagement.User;
+import common.VenusSession;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -95,7 +96,21 @@ public class Project  implements java.io.Serializable {
         return list;
     }
    
-   
+    public List getAllProjectsOfUser(){
+         
+         User user = VenusSession.getSession().getUser();
+         
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx;
+        tx=session.beginTransaction();
+        Query query = session.createQuery("select u.project from proman.Projectuser u where u.user.id=:userId");
+        query.setParameter("userId", user.getId());
+    
+        List list = query.list();
+        tx.commit();
+        session.close();
+        return list;
+    }
     public Integer getId() {
         return this.id;
     }

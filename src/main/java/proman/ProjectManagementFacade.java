@@ -91,6 +91,10 @@ public class ProjectManagementFacade {
          return pro.getAllProjectss();
      }
     
+       public List getAllProjectsOfUser(){
+         
+         return pro.getAllProjectsOfUser();
+     }
     
     /**
      * @return the userlist
